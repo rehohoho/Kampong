@@ -13,6 +13,9 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.kampung.R;
 import com.example.kampung.databinding.FragmentDabaoBinding;
+import com.example.kampung.models.Order;
+import com.example.kampung.models.Request;
+import com.example.kampung.models.User;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,11 +23,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class DabaoFragment extends Fragment {
 
     private final String TAG = "DabaoFragment";
     private final String DB_INSTANCE = "https://kampung-76142-default-rtdb.asia-southeast1.firebasedatabase.app";
-    private final String DB_ORDER_KEY = "orders";
+    private final String DB_ORDER_KEY = "requests";
     private final String DB_USER_KEY = "users";
     private final String DB_USER_ID = "senat";
 
@@ -54,9 +60,21 @@ public class DabaoFragment extends Fragment {
             NavHostFragment.findNavController(DabaoFragment.this)
                 .navigate(R.id.action_SecondFragment_to_FirstFragment));
         binding.buttonDabao.setOnClickListener(view1 -> {
-            mOrderReference.push().setValue(String.valueOf(System.currentTimeMillis()));
-            mUserReference.setValue("I am senat");
+            submitRequest();
         });
+    }
+
+    public void submitRequest() {
+        String key = mOrderReference.push().getKey();
+        Order order = new Order("senat house", "senat kitchen", "varshini", true);
+        User user = new User("senat", "senat");
+        Request request = new Request(user, order, System.currentTimeMillis(), 0L, "SUTD", false, false);
+        Map<String, Object> requestValues = request.toMap();
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put(key, requestValues);
+
+        mOrderReference.updateChildren(childUpdates);
     }
 
     @Override
@@ -71,13 +89,12 @@ public class DabaoFragment extends Fragment {
         ValueEventListener userListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String change = snapshot.getValue(String.class);
-                Log.i(TAG, "onDataChange" + change);
+                Log.i(TAG, "onDataChange: " + snapshot);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, "onCancelled", error.toException());
+                Log.w(TAG, "onCancelled: ", error.toException());
             }
         };
         mUserReference.addValueEventListener(userListener);
@@ -86,26 +103,22 @@ public class DabaoFragment extends Fragment {
         ChildEventListener orderListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                String ts = snapshot.getValue(String.class);
-                Log.d(TAG, "onChildAdded: " + snapshot.getKey() + ": " + ts);
+                Log.d(TAG, "onChildAdded: " + snapshot);
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                String ts = snapshot.getValue(String.class);
-                Log.d(TAG, "onChildChanged: " + snapshot.getKey() + ": " + ts);
+                Log.d(TAG, "onChildChanged: " + snapshot);
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                String ts = snapshot.getValue(String.class);
-                Log.d(TAG, "onChildRemoved: " + snapshot.getKey() + ": " + ts);
+                Log.d(TAG, "onChildRemoved: " + snapshot);
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                String ts = snapshot.getValue(String.class);
-                Log.d(TAG, "onChildRemoved: " + snapshot.getKey() + ": " + ts);
+                Log.d(TAG, "onChildRemoved: " + snapshot);
             }
 
             @Override

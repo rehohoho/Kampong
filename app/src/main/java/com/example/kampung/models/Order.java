@@ -9,14 +9,23 @@ import java.util.Map;
 @IgnoreExtraProperties // ignore class fields not mapped to properties
 public class Order {
 
-    String location;
-    String vendor;
-    String food;
-    Boolean meal;
-    String remarks;
+    public String location;
+    public String vendor;
+    public String food;
+    public Boolean meal;
+    public String remarks;
 
     public Order() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
+    }
+
+    public Order(
+        String location, String vendor, String food, Boolean meal
+    ) {
+        this.location = location;
+        this.vendor = vendor;
+        this.food = food;
+        this.meal = meal;
     }
 
     public Order(

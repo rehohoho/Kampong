@@ -9,13 +9,13 @@ import java.util.Map;
 @IgnoreExtraProperties // ignore class fields not mapped to properties
 public class Request {
 
-    User user;
-    Order order;
-    Long time;
-    Long expireTime;
-    String dest;
-    Boolean isAccepted;
-    Boolean isDelivered;
+    public User user;
+    public Order order;
+    public Long time;
+    public Long expireTime;
+    public String dest;
+    public Boolean isAccepted;
+    public Boolean isDelivered;
 
     public Request() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
