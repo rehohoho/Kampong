@@ -1,12 +1,15 @@
 <resources>
     <string name="app_name">Kampung</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="main_label">Home</string>
+    <string name="main_text">Welcome to Kampong!</string>
+    <string name="main_order_button_text">Let\'s Dabao</string>
+    <string name="main_search_button_text">Search orders!</string>
+
+    <string name="second_fragment_label">Let\'s Dabao!</string>
+    <string name="previous">Go back</string>
+
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>
