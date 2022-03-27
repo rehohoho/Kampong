@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "847985531070",
+    "project_id": "kampung-76142",
+    "storage_bucket": "kampung-76142.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847985531070:android:21f2aa1fa58d3227f8a6ef",
+        "android_client_info": {
+          "package_name": "com.example.kampung"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "847985531070-polg94hi5smvgkga27ncfspsiuhe8o6k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kampung",
+            "certificate_hash": "d70dfc47452909715daca00bcf150341a2501db2"
+          }
+        },
+        {
+          "client_id": "847985531070-avp1o6kgpsnum3d6rfr8alciu60hj39p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUrN8ueUjyhNXTrmivYH8iWYgGAiiUklc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "847985531070-avp1o6kgpsnum3d6rfr8alciu60hj39p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
