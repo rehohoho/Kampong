@@ -21,7 +21,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,15 +29,12 @@ public class DabaoFragment extends Fragment {
 
     private final String TAG = "DabaoFragment";
     private final String DB_INSTANCE = "https://kampung-76142-default-rtdb.asia-southeast1.firebasedatabase.app";
-    private final String DB_ORDER_KEY = "requests";
-    private final String DB_USER_KEY = "users";
+    private final String DB_REQUEST_KEY = "requests";
     private final String DB_USER_ID = "senat";
 
     private FragmentDabaoBinding binding;
     private DatabaseReference mOrderReference;
     private ChildEventListener mOrderListener;
-    private DatabaseReference mUserReference;
-    private ValueEventListener mUserListener;
 
     @Override
     public View onCreateView(
@@ -52,9 +48,7 @@ public class DabaoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mOrderReference = FirebaseDatabase.getInstance(DB_INSTANCE).getReference()
-            .child(DB_ORDER_KEY).child(DB_USER_ID);
-        mUserReference = FirebaseDatabase.getInstance(DB_INSTANCE).getReference()
-            .child(DB_USER_KEY).child(DB_USER_ID);
+            .child(DB_REQUEST_KEY).child(DB_USER_ID);
 
         binding.buttonBack.setOnClickListener(view1 ->
             NavHostFragment.findNavController(DabaoFragment.this)
@@ -86,20 +80,6 @@ public class DabaoFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        ValueEventListener userListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.i(TAG, "onDataChange: " + snapshot);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, "onCancelled: ", error.toException());
-            }
-        };
-        mUserReference.addValueEventListener(userListener);
-        mUserListener = userListener;
-
         ChildEventListener orderListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -134,9 +114,6 @@ public class DabaoFragment extends Fragment {
     public void onStop() {
         super.onStop();
 
-        if (mUserListener != null) {
-            mUserReference.removeEventListener(mUserListener);
-        }
         if (mOrderListener != null) {
             mOrderReference.removeEventListener(mOrderListener);
         }
