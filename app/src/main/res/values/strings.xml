@@ -12,4 +12,5 @@
     <string name="previous">Go back</string>
 
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="dabao_dabao_button_text">Dabao!</string>
 </resources>
