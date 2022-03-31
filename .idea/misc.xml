@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Louis/AndroidStudioProjects/Kampong/app/src/main/res/layout/activity_main.xml" value="0.17604166666666668" />
         <entry key="..\:/repos/Kampung/app/src/main/res/layout/activity_main.xml" value="0.12685185185185185" />
         <entry key="..\:/repos/Kampung/app/src/main/res/layout/content_main.xml" value="0.12685185185185185" />
         <entry key="..\:/repos/Kampung/app/src/main/res/layout/fragment_dabao.xml" value="0.12685185185185185" />
@@ -11,6 +12,7 @@
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
