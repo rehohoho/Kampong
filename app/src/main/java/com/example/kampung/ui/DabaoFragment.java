@@ -33,8 +33,8 @@ public class DabaoFragment extends Fragment {
     private final String DB_USER_ID = "senat";
 
     private FragmentDabaoBinding binding;
-    private DatabaseReference mOrderReference;
-    private ChildEventListener mOrderListener;
+    private DatabaseReference mRequestReference;
+    private ChildEventListener mRequestListener;
 
     @Override
     public View onCreateView(
@@ -47,7 +47,7 @@ public class DabaoFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mOrderReference = FirebaseDatabase.getInstance(DB_INSTANCE).getReference()
+        mRequestReference = FirebaseDatabase.getInstance(DB_INSTANCE).getReference()
             .child(DB_REQUEST_KEY).child(DB_USER_ID);
 
         binding.buttonBack.setOnClickListener(view1 ->
@@ -59,7 +59,7 @@ public class DabaoFragment extends Fragment {
     }
 
     public void submitRequest() {
-        String key = mOrderReference.push().getKey();
+        String key = mRequestReference.push().getKey();
         Order order = new Order("senat house", "senat kitchen", "varshini", true);
         User user = new User("senat", "senat");
         Request request = new Request(user, order, System.currentTimeMillis(), 0L, "SUTD", false, false);
@@ -68,7 +68,7 @@ public class DabaoFragment extends Fragment {
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put(key, requestValues);
 
-        mOrderReference.updateChildren(childUpdates);
+        mRequestReference.updateChildren(childUpdates);
     }
 
     @Override
@@ -106,16 +106,16 @@ public class DabaoFragment extends Fragment {
                 Log.w(TAG, "onCancelled", error.toException());
             }
         };
-        mOrderReference.addChildEventListener(orderListener);
-        mOrderListener = orderListener;
+        mRequestReference.addChildEventListener(orderListener);
+        mRequestListener = orderListener;
     }
 
     @Override
     public void onStop() {
         super.onStop();
 
-        if (mOrderListener != null) {
-            mOrderReference.removeEventListener(mOrderListener);
+        if (mRequestListener != null) {
+            mRequestReference.removeEventListener(mRequestListener);
         }
     }
 }
