@@ -33,6 +33,62 @@ public class Request {
         this.isDelivered = isDelivered;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
+    }
+
+    public Long getExpireTime() {
+        return expireTime;
+    }
+
+    public void setExpireTime(Long expireTime) {
+        this.expireTime = expireTime;
+    }
+
+    public String getDest() {
+        return dest;
+    }
+
+    public void setDest(String dest) {
+        this.dest = dest;
+    }
+
+    public Boolean getAccepted() {
+        return isAccepted;
+    }
+
+    public void setAccepted(Boolean accepted) {
+        isAccepted = accepted;
+    }
+
+    public Boolean getDelivered() {
+        return isDelivered;
+    }
+
+    public void setDelivered(Boolean delivered) {
+        isDelivered = delivered;
+    }
+
     @Exclude // excludes field from database
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
