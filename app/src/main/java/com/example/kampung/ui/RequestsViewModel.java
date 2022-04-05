@@ -13,7 +13,6 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 
 
 public class RequestsViewModel extends ViewModel {
@@ -24,8 +23,7 @@ public class RequestsViewModel extends ViewModel {
     private DatabaseReference mRequestReference;
     private ChildEventListener mRequestListener;
 
-    private ChildEventListener orderListener = new ChildEventListener() {
-
+    private final ChildEventListener requestListener = new ChildEventListener() {
         @Override
         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
             Log.d(TAG, "onChildAdded: " + snapshot);
@@ -55,10 +53,10 @@ public class RequestsViewModel extends ViewModel {
     private RequestsViewModel() {
     }
 
-    private LiveData<Request> getRequest() {
+    public LiveData<Request> getRequest() {
         if (requestData == null) {
-//            mRequestReference.addChildEventListener(orderListener);
-            mRequestListener = orderListener;
+            mRequestReference.addChildEventListener(requestListener);
+            mRequestListener = requestListener;
             requestData = new MutableLiveData<>();
             loadRequests();
         }
@@ -72,9 +70,9 @@ public class RequestsViewModel extends ViewModel {
     @Override
     protected void onCleared() {
         super.onCleared();
-//        if (mRequestListener != null) {
-//            mRequestReference.removeEventListener(mRequestListener);
-//        }
+        if (mRequestListener != null) {
+            mRequestReference.removeEventListener(mRequestListener);
+        }
     }
 
 }

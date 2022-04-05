@@ -28,7 +28,7 @@ public class UserViewModel extends ViewModel {
     private DatabaseReference mUserReference;
     private ValueEventListener mUserListener;
 
-    private ValueEventListener userListener = new ValueEventListener() {
+    private final ValueEventListener userListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             Log.i(TAG, "onDataChange: " + snapshot);
@@ -40,10 +40,7 @@ public class UserViewModel extends ViewModel {
         }
     };
 
-    private UserViewModel() {
-    }
-
-    private LiveData<User> getUser() {
+    public LiveData<User> getUser() {
         if (userData == null) {
             mUserReference.addValueEventListener(userListener);
             mUserListener = userListener;
