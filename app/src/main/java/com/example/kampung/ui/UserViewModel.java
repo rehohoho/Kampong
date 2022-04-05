@@ -1,4 +1,4 @@
-package com.example.kampung;
+package com.example.kampung.ui;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,12 +10,14 @@ import com.example.kampung.models.User;
 /**
  * ViewModel helps prepare data for UI, retained during configuration changes,
  * available to next fragment / activity instance.
+ *
+ * Singleton implementation
  */
-public class UserSingleton extends ViewModel {
+public class UserViewModel extends ViewModel {
 
     private MutableLiveData<User> userData;
 
-    private UserSingleton() {
+    private UserViewModel() {
 
     }
 
