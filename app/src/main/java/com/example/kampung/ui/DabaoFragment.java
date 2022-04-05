@@ -62,8 +62,9 @@ public class DabaoFragment extends Fragment {
         EditText edit_username = getView().findViewById(R.id.edit_username);
         EditText edit_order = getView().findViewById(R.id.edit_order);
         Button submitBtn = getView().findViewById(R.id.btn_submit);
-        DAORequest daoRequest = new DAORequest();
 
+
+        DAORequest daoRequest = new DAORequest();
 
         // Code block that handles actions when submit button is clicked
         submitBtn.setOnClickListener(v -> {
@@ -76,7 +77,6 @@ public class DabaoFragment extends Fragment {
                 Toast.makeText(getActivity(), ""+er.getMessage(), Toast.LENGTH_SHORT).show();
             });
         });
-
 
         // handles navigation back to Main fragment
         binding.buttonBack.setOnClickListener(view1 ->
@@ -103,45 +103,5 @@ public class DabaoFragment extends Fragment {
         binding = null;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        ChildEventListener orderListener = new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Log.d(TAG, "onChildAdded: " + snapshot);
-            }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Log.d(TAG, "onChildChanged: " + snapshot);
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                Log.d(TAG, "onChildRemoved: " + snapshot);
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Log.d(TAG, "onChildRemoved: " + snapshot);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, "onCancelled", error.toException());
-            }
-        };
-//        mRequestReference.addChildEventListener(orderListener);
-        mRequestListener = orderListener;
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-//
-//        if (mRequestListener != null) {
-//            mRequestReference.removeEventListener(mRequestListener);
-//        }
-    }
 }
