@@ -6,15 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainFragment">
 
-    <TextView
-        android:id="@+id/main_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main_text"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         app:layout_constraintBottom_toTopOf="@id/button_order"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/button_order"
@@ -24,7 +23,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_textview" />
+        app:layout_constraintTop_toBottomOf="@id/main_recyclerView" />
 
     <Button
         android:id="@+id/button_search"
