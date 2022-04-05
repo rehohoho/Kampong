@@ -15,6 +15,7 @@ public class DAORequest {
     private final String DB_REQUEST_KEY = "requests";
     private final String DB_USER_ID = "senat";
 
+
     private FragmentDabaoBinding binding;
     private DatabaseReference databaseReference;
     private ChildEventListener mRequestListener;
@@ -26,7 +27,9 @@ public class DAORequest {
     }
 
     public Task<Void> add(SmolRequest req){
-        return databaseReference.push().setValue(req);
+        DatabaseReference userReference = databaseReference.child(DB_USER_ID);
+        return userReference.push().setValue(req);
     }
+
 
 }

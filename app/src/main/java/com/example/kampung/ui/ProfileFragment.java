@@ -19,12 +19,14 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class ProfileFragment extends Fragment {
-//    private final String TAG = "ProfileFragment";
-//    private final String DB_INSTANCE = "https://kampung-76142-default-rtdb.asia-southeast1.firebasedatabase.app";
-//    private final String DB_USER_KEY = "users";
-//    private final String DB_USER_ID = "senat";
+    private final String TAG = "ProfileFragment";
+    private final String DB_INSTANCE = "https://kampung-76142-default-rtdb.asia-southeast1.firebasedatabase.app";
+    private final String DB_USER_KEY = "users";
+    private final String DB_USER_ID = "senat";
 
     private FragmentProfileBinding binding;
+    private DatabaseReference mUserReference;
+    private ValueEventListener mUserListener;
 
     @Override
     public View onCreateView(
