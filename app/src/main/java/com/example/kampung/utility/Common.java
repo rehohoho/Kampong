@@ -12,8 +12,8 @@ public class Common {
         if (connectivityManager != null) {
             NetworkInfo[] info = connectivityManager.getAllNetworkInfo();
             if (info != null) {
-                for (int i = 0; i < info.length; i++) {
-                    if (info[i].getState() == NetworkInfo.State.CONNECTED) return true;
+                for (NetworkInfo networkInfo : info) {
+                    if (networkInfo.getState() == NetworkInfo.State.CONNECTED) return true;
                 }
             }
         }

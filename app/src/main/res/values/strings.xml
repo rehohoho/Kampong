@@ -13,4 +13,8 @@
 
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="dabao_dabao_button_text">Dabao!</string>
+    <string name="title_activity_bottom_nav">Bottom_Nav_Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
