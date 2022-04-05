@@ -34,11 +34,9 @@ public class DabaoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        DAO dao = new DAO();
-
         // Code block that handles actions when submit button is clicked
         binding.btnSubmit.setOnClickListener(v -> {
-            dao.addRequest().addOnSuccessListener(suc ->
+            DAO.getInstance().addRequest().addOnSuccessListener(suc ->
             {
                 Toast.makeText(getActivity(), "Record is inserted", Toast.LENGTH_SHORT).show();
             }).addOnFailureListener(er ->

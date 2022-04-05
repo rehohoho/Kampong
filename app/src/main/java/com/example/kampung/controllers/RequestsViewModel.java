@@ -12,15 +12,12 @@ import com.example.kampung.models.Request;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 
 
 public class RequestsViewModel extends ViewModel {
 
     private static final String TAG = "RequestsViewModel";
     private MutableLiveData<Request> requestData;
-
-    private DatabaseReference mRequestReference;
     private ChildEventListener mRequestListener;
 
     private final ChildEventListener requestListener = new ChildEventListener() {
@@ -55,7 +52,7 @@ public class RequestsViewModel extends ViewModel {
 
     public LiveData<Request> getRequests() {
         if (requestData == null) {
-            mRequestReference.addChildEventListener(requestListener);
+            DAO.getInstance().addRequestsListener(requestListener);
             mRequestListener = requestListener;
             requestData = new MutableLiveData<>();
             loadRequests();
@@ -71,7 +68,7 @@ public class RequestsViewModel extends ViewModel {
     protected void onCleared() {
         super.onCleared();
         if (mRequestListener != null) {
-            mRequestReference.removeEventListener(mRequestListener);
+            DAO.getInstance().removeRequestListener(mRequestListener);
         }
     }
 

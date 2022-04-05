@@ -30,7 +30,6 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         // handles navigation to Dabao Fragment
         binding.buttonOrder.setOnClickListener(view1 ->
             NavHostFragment.findNavController(MainFragment.this).navigate(R.id.action_FirstFragment_to_SecondFragment));
