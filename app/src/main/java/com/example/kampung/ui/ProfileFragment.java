@@ -23,10 +23,6 @@ public class ProfileFragment extends Fragment {
 //    private final String DB_INSTANCE = "https://kampung-76142-default-rtdb.asia-southeast1.firebasedatabase.app";
 //    private final String DB_USER_KEY = "users";
 //    private final String DB_USER_ID = "senat";
-//
-//    private FragmentProfileBinding binding;
-//    private DatabaseReference mUserReference;
-//    private ValueEventListener mUserListener;
 
     private FragmentProfileBinding binding;
 
@@ -42,34 +38,6 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        ValueEventListener userListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.i(TAG, "onDataChange: " + snapshot);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.w(TAG, "onCancelled: ", error.toException());
-            }
-        };
-        mUserReference.addValueEventListener(userListener);
-        mUserListener = userListener;
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        if (mUserListener != null) {
-            mUserReference.removeEventListener(mUserListener);
-        }
-    }
 }
