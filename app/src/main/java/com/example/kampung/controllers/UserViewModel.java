@@ -1,4 +1,4 @@
-package com.example.kampung.ui;
+package com.example.kampung.controllers;
 
 import android.util.Log;
 

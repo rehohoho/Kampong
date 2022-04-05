@@ -1,4 +1,4 @@
-package com.example.kampung.ui;
+package com.example.kampung.controllers;
 
 import android.util.Log;
 
@@ -53,7 +53,7 @@ public class RequestsViewModel extends ViewModel {
     private RequestsViewModel() {
     }
 
-    public LiveData<Request> getRequest() {
+    public LiveData<Request> getRequests() {
         if (requestData == null) {
             mRequestReference.addChildEventListener(requestListener);
             mRequestListener = requestListener;
