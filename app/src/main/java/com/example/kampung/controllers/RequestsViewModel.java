@@ -24,6 +24,7 @@ public class RequestsViewModel extends ViewModel {
         @Override
         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
             Log.d(TAG, "onChildAdded: " + snapshot);
+            requestData.setValue(snapshot.getValue(Request.class));
         }
 
         @Override
@@ -47,21 +48,13 @@ public class RequestsViewModel extends ViewModel {
         }
     };
 
-    private RequestsViewModel() {
-    }
-
     public LiveData<Request> getRequests() {
         if (requestData == null) {
             DAO.getInstance().addRequestsListener(requestListener);
             mRequestListener = requestListener;
             requestData = new MutableLiveData<>();
-            loadRequests();
         }
         return requestData;
-    }
-
-    private void loadRequests() {
-        // asynchronously load requestData here
     }
 
     @Override

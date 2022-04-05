@@ -102,4 +102,16 @@ public class Request {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "Request{" +
+                "user=" + user +
+                ", order=" + order +
+                ", time=" + time +
+                ", expireTime=" + expireTime +
+                ", dest='" + dest + '\'' +
+                ", isAccepted=" + isAccepted +
+                ", isDelivered=" + isDelivered +
+                '}';
+    }
 }
