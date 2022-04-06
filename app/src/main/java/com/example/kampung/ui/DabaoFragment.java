@@ -13,9 +13,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.kampung.controllers.DAO;
 import com.example.kampung.R;
 import com.example.kampung.databinding.FragmentDabaoBinding;
-import com.example.kampung.models.SmolRequest;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DatabaseReference;
+
 
 public class DabaoFragment extends Fragment {
 

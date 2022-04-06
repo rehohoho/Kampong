@@ -45,13 +45,8 @@ public class UserViewModel extends ViewModel {
             mUserReference.addValueEventListener(userListener);
             mUserListener = userListener;
             userData = new MutableLiveData<>();
-            loadUser();
         }
         return userData;
-    }
-
-    private void loadUser() {
-        // asynchronously load userData here
     }
 
     @Override
