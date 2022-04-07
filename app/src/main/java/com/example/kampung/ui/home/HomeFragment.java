@@ -36,7 +36,7 @@ public class HomeFragment extends Fragment {
         return homeView;
     }
 
-    @Override
+    /*@Override
     public void onStart(){
         super.onStart();
         FirebaseRecyclerOptions options=new FirebaseRecyclerOptions.Builder<Request>()
@@ -97,7 +97,7 @@ public class HomeFragment extends Fragment {
     }
 
 
-
+*/
 
 
     @Override
