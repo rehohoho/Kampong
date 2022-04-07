@@ -13,6 +13,11 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.kampung.controllers.DAO;
 import com.example.kampung.R;
 import com.example.kampung.databinding.FragmentDabaoBinding;
+import com.example.kampung.models.Order;
+import com.example.kampung.models.Request;
+import com.example.kampung.models.User;
+
+import java.util.Map;
 
 
 public class DabaoFragment extends Fragment {
@@ -32,9 +37,14 @@ public class DabaoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //TODO: please replace this with ui elements (input the text instead of hardcoding)
+        Order order = new Order("senat house", "senat kitchen", "varshini", true);
+        User user = new User("senat", "senat");
+        Request request = new Request(user, order, System.currentTimeMillis(), 0L, "SUTD", false, false);
+
         // Code block that handles actions when submit button is clicked
         binding.btnSubmit.setOnClickListener(v -> {
-            DAO.getInstance().addRequest().addOnSuccessListener(suc ->
+            DAO.getInstance().addRequest(request).addOnSuccessListener(suc ->
             {
                 Toast.makeText(getActivity(), "Record is inserted", Toast.LENGTH_SHORT).show();
             }).addOnFailureListener(er ->

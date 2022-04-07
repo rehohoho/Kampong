@@ -37,17 +37,18 @@ public class DAO {
         return dao;
     }
 
-    public Task<Void> addRequest() {
+    public Task<Void> addRequest(Request request) {
         String key = requestDb.push().getKey();
-        Order order = new Order("senat house", "senat kitchen", "varshini", true);
-        User user = new User("senat", "senat");
-        Request request = new Request(user, order, System.currentTimeMillis(), 0L, "SUTD", false, false);
-        Map<String, Object> requestValues = request.toMap();
+        Map<String, Object> requestUpdates = new HashMap<>();
+        requestUpdates.put(key, request);
+        return requestDb.updateChildren(requestUpdates);
+    }
 
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put(key, requestValues);
-
-        return requestDb.updateChildren(childUpdates);
+    public Task<Void> addUser(User user) {
+        String key = requestDb.push().getKey();
+        Map<String, Object> userUpdates = new HashMap<>();
+        userUpdates.put(key, user);
+        return userDb.push().setValue(userUpdates);
     }
 
     public void addRequestsListener(ChildEventListener listener) {

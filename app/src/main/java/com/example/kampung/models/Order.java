@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @IgnoreExtraProperties // ignore class fields not mapped to properties
-public class    Order {
+public class Order {
 
     public String location;
     public String vendor;
