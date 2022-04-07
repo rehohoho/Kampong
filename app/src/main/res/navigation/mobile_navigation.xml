@@ -18,8 +18,22 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.kampung.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_user_profile"
+        android:name="com.example.kampung.ui.userprofile.UserProfileFragment"
+        android:label="@string/title_user_profile"
+        tools:layout="@layout/fragment_user_profile" >
+        <action
+            android:id="@+id/action_navigation_user_profile_to_requestDetailFragment"
+            app:destination="@id/requestDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/requestDetailFragment"
+        android:name="com.example.kampung.ui.RequestDetailFragment"
+        android:label="fragment_request_detail"
+        tools:layout="@layout/fragment_request_detail" >
+        <argument
+            android:name="requestKey"
+            app:argType="string" />
+    </fragment>
 </navigation>

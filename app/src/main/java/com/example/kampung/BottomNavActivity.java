@@ -12,7 +12,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.kampung.databinding.ActivityBottomNavBinding;
 
-public class Bottom_Nav_Activity extends AppCompatActivity {
+public class BottomNavActivity extends AppCompatActivity {
 
     private ActivityBottomNavBinding binding;
 
@@ -27,7 +27,7 @@ public class Bottom_Nav_Activity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_user_profile)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_bottom_nav);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
