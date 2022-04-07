@@ -17,4 +17,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="location">location</string>
+    <string name="restaurant">restaurant</string>
+    <string name="x_mins_ago">x mins ago</string>
 </resources>
