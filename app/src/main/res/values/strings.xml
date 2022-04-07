@@ -20,4 +20,7 @@
     <string name="profile">User Profile</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="location">location</string>
+    <string name="restaurant">restaurant</string>
+    <string name="x_mins_ago">time elapsed</string>
 </resources>
