@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kampung.R;
 
-public class viewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class viewHolder extends RecyclerView.ViewHolder {
 
     public TextView reqlocation;
     public TextView reqrestaurant, reqtime;
@@ -23,14 +23,11 @@ public class viewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         reqlocation=(TextView)itemView.findViewById(R.id.text_requestlocation);
         reqrestaurant=(TextView) itemView.findViewById(R.id.text_restaurant);
         reqtime=itemView.findViewById(R.id.text_reqtime_elapsed);
-        itemView.setOnClickListener(this);
+        //itemView.setOnClickListener(this);
 
     }
 
-    @Override
-    public void onClick(View view){
-        itemClickListener.onClick(view, getAdapterPosition(),false);
-    }
+
 }
 
 

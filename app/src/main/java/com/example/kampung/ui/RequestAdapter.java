@@ -22,7 +22,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
     private final LayoutInflater mInflater;
     private ArrayList<Request> requests;
 
-    RequestAdapter(Context context, ArrayList<Request> requests) {
+    public RequestAdapter(Context context, ArrayList<Request> requests) {
         mInflater = LayoutInflater.from(context);
         this.requests = requests;
     }
