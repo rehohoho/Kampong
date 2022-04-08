@@ -45,7 +45,7 @@ public class MainFragment extends Fragment {
         binding.mainRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
-        requestsViewModel.getRequests().observe(getViewLifecycleOwner(), request -> {
+        requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), request -> {
             Log.d(TAG, "nani " + request.toString());
             requestList.add(request);
             requestAdapter.notifyItemInserted(requestList.size() - 1);

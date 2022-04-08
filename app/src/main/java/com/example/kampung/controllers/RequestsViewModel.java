@@ -19,6 +19,7 @@ public class RequestsViewModel extends ViewModel {
     private static final String TAG = "RequestsViewModel";
     private MutableLiveData<Request> requestData;
     private ChildEventListener mRequestListener;
+    private DAO dao;
 
     private final ChildEventListener requestListener = new ChildEventListener() {
         @Override
@@ -48,9 +49,10 @@ public class RequestsViewModel extends ViewModel {
         }
     };
 
-    public LiveData<Request> getRequests() {
+    public LiveData<Request> getRequests(DAO dao) {
         if (requestData == null) {
-            DAO.getInstance().addRequestsListener(requestListener);
+            this.dao = dao;
+            dao.addRequestsListener(requestListener);
             mRequestListener = requestListener;
             requestData = new MutableLiveData<>();
         }
@@ -61,7 +63,7 @@ public class RequestsViewModel extends ViewModel {
     protected void onCleared() {
         super.onCleared();
         if (mRequestListener != null) {
-            DAO.getInstance().removeRequestListener(mRequestListener);
+            dao.removeRequestListener(mRequestListener);
         }
     }
 

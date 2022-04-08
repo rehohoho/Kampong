@@ -1,12 +1,12 @@
 package com.example.kampung.controllers;
 
-import com.example.kampung.models.Order;
 import com.example.kampung.models.Request;
 import com.example.kampung.models.User;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,6 +57,14 @@ public class DAO {
 
     public void removeRequestListener(ChildEventListener listener) {
         requestDb.removeEventListener(listener);
+    }
+
+    public void addUserListener(ValueEventListener listener) {
+        userDb.addValueEventListener(listener);
+    }
+
+    public void removeUserListener(ValueEventListener listener) {
+        userDb.removeEventListener(listener);
     }
 
 }
