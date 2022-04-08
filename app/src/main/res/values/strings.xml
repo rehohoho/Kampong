@@ -23,4 +23,12 @@
     <string name="location">location</string>
     <string name="restaurant">restaurant</string>
     <string name="x_mins_ago">time elapsed</string>
+
+    <string name="x_mins_ago">x mins ago</string>
+    <string name="x_mins_ago">time elapsed</string>
+    <string name="order">order</string>
+    <string name="dest">dest</string>
+    <string name="telehandle">telehandle</string>
+    <string name="dabao">Dabao</string>
+
 </resources>
