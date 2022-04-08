@@ -80,6 +80,7 @@ public class RequestsViewModel extends ViewModel {
         super.onCleared();
         if (mRequestListener != null) {
             dao.removeRequestListener(mRequestListener);
+            mRequestListener = null;
         }
     }
 

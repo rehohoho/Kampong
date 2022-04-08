@@ -46,8 +46,9 @@ public class TestRequestsViewModel {
     }
 
     @Test
-    public void isListenerRemoved() {
-        // assert requestsViewModel.getRequestListener() == null;
+    public void isListenerRemoved() throws InterruptedException {
+        ViewModelTestUtil.callOnClear(requestsViewModel);
+        assert requestsViewModel.getRequestListener() == null;
     }
 
     @Test
