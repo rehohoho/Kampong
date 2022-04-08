@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.kampung.models.Request;
+import com.example.kampung.models.RequestAction;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,7 +18,7 @@ import com.google.firebase.database.DatabaseError;
 public class RequestsViewModel extends ViewModel {
 
     private static final String TAG = "RequestsViewModel";
-    private MutableLiveData<Request> requestData;
+    private MutableLiveData<RequestAction> requestData;
     private ChildEventListener mRequestListener;
     private DAO dao;
 
@@ -25,22 +26,29 @@ public class RequestsViewModel extends ViewModel {
         @Override
         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
             Log.d(TAG, "onChildAdded: " + snapshot);
-            requestData.setValue(snapshot.getValue(Request.class));
+            Request req = snapshot.getValue(Request.class);
+            requestData.setValue(new RequestAction(req, RequestAction.ACTION_ID.ADDED));
         }
 
         @Override
         public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
             Log.d(TAG, "onChildChanged: " + snapshot);
+            Request req = snapshot.getValue(Request.class);
+            requestData.setValue(new RequestAction(req, RequestAction.ACTION_ID.CHANGED));
         }
 
         @Override
         public void onChildRemoved(@NonNull DataSnapshot snapshot) {
             Log.d(TAG, "onChildRemoved: " + snapshot);
+            Request req = snapshot.getValue(Request.class);
+            requestData.setValue(new RequestAction(req, RequestAction.ACTION_ID.REMOVED));
         }
 
         @Override
         public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
             Log.d(TAG, "onChildRemoved: " + snapshot);
+            Request req = snapshot.getValue(Request.class);
+            requestData.setValue(new RequestAction(req, RequestAction.ACTION_ID.MOVED));
         }
 
         @Override
@@ -49,7 +57,7 @@ public class RequestsViewModel extends ViewModel {
         }
     };
 
-    public LiveData<Request> getRequests(DAO dao) {
+    public LiveData<RequestAction> getRequests(DAO dao) {
         if (requestData == null) {
             this.dao = dao;
             dao.addRequestsListener(requestListener);
