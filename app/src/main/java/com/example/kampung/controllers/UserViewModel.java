@@ -38,6 +38,10 @@ public class UserViewModel extends ViewModel {
         public void onCancelled(@NonNull DatabaseError error) {
             Log.w(TAG, "onCancelled: ", error.toException());
         }
+
+        public Boolean checkIfExists(DataSnapshot snapshot) {
+            return snapshot.exists();
+        }
     };
 
     public LiveData<User> getUser(DAO dao) {
@@ -57,4 +61,6 @@ public class UserViewModel extends ViewModel {
             dao.removeUserListener(userListener);
         }
     }
+
+
 }
