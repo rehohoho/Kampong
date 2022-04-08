@@ -16,8 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kampung.R;
+import com.example.kampung.controllers.DAO;
 import com.example.kampung.controllers.RequestsViewModel;
 import com.example.kampung.databinding.FragmentHomeBinding;
+import com.example.kampung.models.RequestAction;
 import com.example.kampung.ui.RequestAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -35,7 +37,7 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
     private final String TAG = "HomeFragment";
     private RequestsViewModel requestsViewModel;
-    private ArrayList<Request> requestList = new ArrayList<>();
+    private ArrayList<RequestAction> requestList = new ArrayList<>();
     private FragmentHomeBinding binding;
 
 
@@ -51,7 +53,7 @@ public class HomeFragment extends Fragment {
         return binding.getRoot();
     }
 
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    /*public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         HomeRequestAdapter requestAdapter = new HomeRequestAdapter(getContext(), requestList);
@@ -60,8 +62,9 @@ public class HomeFragment extends Fragment {
 
         binding.recyclerBrowsereq.setLayoutManager(new LinearLayoutManager(getContext()));
 
+
         requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
-        requestsViewModel.getRequests().observe(getViewLifecycleOwner(), request -> {
+        requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), request -> {
             Log.d(TAG, "nani " + request.toString());
             requestList.add(request);
             requestAdapter.notifyItemInserted(requestList.size() - 1);
@@ -69,10 +72,10 @@ public class HomeFragment extends Fragment {
 
 
         // handles navigation to Dabao Fragment
-        /*binding.buttonOrder.setOnClickListener(view1 ->
-                NavHostFragment.findNavController(MainFragment.this).navigate(R.id.action_FirstFragment_to_SecondFragment));*/
+        *//*binding.buttonOrder.setOnClickListener(view1 ->
+                NavHostFragment.findNavController(MainFragment.this).navigate(R.id.action_FirstFragment_to_SecondFragment));*//*
     }
-
+*/
 
 
     /*@Override

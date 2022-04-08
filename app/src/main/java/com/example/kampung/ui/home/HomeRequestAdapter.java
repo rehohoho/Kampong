@@ -20,7 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kampung.R;
 import com.example.kampung.models.Request;
-import com.example.kampung.ui.MainFragment;
+import com.example.kampung.models.RequestAction;
+
 import com.example.kampung.ui.userprofile.RequestAdapter;
 
 import java.util.ArrayList;
