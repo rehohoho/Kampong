@@ -17,7 +17,6 @@ import java.util.Map;
 public class DAO {
 
     private final String TAG = "DAO";
-    private final String DB_USER_ID = "senat";
     private static DAO dao;
 
     private DatabaseReference requestDb;
@@ -44,11 +43,23 @@ public class DAO {
         return requestDb.updateChildren(requestUpdates);
     }
 
+    public Task<Void> updateRequest(String key, Request request) {
+        Map<String, Object> requestUpdates = new HashMap<>();
+        requestUpdates.put(key, request);
+        return requestDb.updateChildren(requestUpdates);
+    }
+
     public Task<Void> addUser(User user) {
-        String key = requestDb.push().getKey();
+        String key = userDb.push().getKey();
         Map<String, Object> userUpdates = new HashMap<>();
         userUpdates.put(key, user);
-        return userDb.push().setValue(userUpdates);
+        return userDb.updateChildren(userUpdates);
+    }
+
+    public Task<Void> updateUser(String key, User user) {
+        Map<String, Object> userUpdates = new HashMap<>();
+        userUpdates.put(key, user);
+        return userDb.updateChildren(userUpdates);
     }
 
     public void addRequestsListener(ChildEventListener listener) {
