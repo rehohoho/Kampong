@@ -100,17 +100,12 @@ public class HomeRequestDetails extends Fragment {
             }
         });
 
-
-
-        UserViewModel userViewModel=new UserViewModel();
-        userViewModel.getUser(DAO.getInstance()).observe(getViewLifecycleOwner(), user ->{
-            currUser=user;
-        } );
-
-
+        UserViewModel userViewModel = new UserViewModel();
+        userViewModel.getUser(DAO.getInstance()).observe(getViewLifecycleOwner(), user -> {
+            currUser = user;
+        });
 
         return binding.getRoot();
-        //return inflater.inflate(R.layout.fragment_home_request_details, container, false);
     }
 
     @Override
@@ -128,8 +123,5 @@ public class HomeRequestDetails extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
     }
-
-
-
 
 }

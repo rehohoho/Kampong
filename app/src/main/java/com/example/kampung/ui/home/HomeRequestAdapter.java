@@ -9,20 +9,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kampung.R;
 import com.example.kampung.models.Request;
 import com.example.kampung.models.RequestAction;
-
-import com.example.kampung.ui.userprofile.RequestAdapter;
 
 import java.util.ArrayList;
 
@@ -43,26 +38,20 @@ public class HomeRequestAdapter extends RecyclerView.Adapter<HomeRequestAdapter.
     }
 
     static class RequestViewHolder extends RecyclerView.ViewHolder{
-        TextView locationTV,vendorTV,timeTV,destTV,teleHandleTV,userTV;
-
+        TextView locationTV, vendorTV, timeTV, destTV, teleHandleTV, userTV;
 
         public RequestViewHolder(@NonNull View itemView) {
             super(itemView);
             locationTV = itemView.findViewById(R.id.text_requestlocation);
-            vendorTV=itemView.findViewById(R.id.text_restaurant);
-            timeTV=itemView.findViewById(R.id.text_reqtime_elapsed);
-
+            vendorTV = itemView.findViewById(R.id.text_restaurant);
+            timeTV = itemView.findViewById(R.id.text_reqtime_elapsed);
         }
 
-
     }
-
-
 
     @Override
     public RequestViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View itemView = mInflater.inflate(R.layout.fragment_home_request_cardview, viewGroup, false);
-
         return new RequestViewHolder(itemView);
     }
 
