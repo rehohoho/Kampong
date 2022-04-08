@@ -67,6 +67,14 @@ public class RequestsViewModel extends ViewModel {
         return requestData;
     }
 
+    // For testing purposes
+    public ChildEventListener getRequestListener() {
+        return mRequestListener;
+    }
+    public void setRequest(RequestAction requestAction) {
+        requestData.setValue(requestAction);
+    }
+
     @Override
     protected void onCleared() {
         super.onCleared();
