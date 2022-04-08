@@ -20,21 +20,23 @@ import com.example.kampung.models.Request;
 import com.example.kampung.models.RequestAction;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class HomeRequestAdapter extends RecyclerView.Adapter<HomeRequestAdapter.RequestViewHolder> {
 
     private final String TAG = "RequestAdapter";
     private final LayoutInflater mInflater;
-    private ArrayList<RequestAction> requests;
+    private ArrayList<Request> requests;
     private NavController navController;
-    private String reqKey;
 
-    public HomeRequestAdapter(Context context, ArrayList<RequestAction> requests) {
+    public HomeRequestAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
-        this.requests = requests;
-        //navController=navcontroller;
+        requests = new ArrayList<>();
+    }
 
+    public void setRequests(HashMap<String, Request> requestMap) {
+        this.requests = new ArrayList<>(requestMap.values());
     }
 
     static class RequestViewHolder extends RecyclerView.ViewHolder{
@@ -57,11 +59,13 @@ public class HomeRequestAdapter extends RecyclerView.Adapter<HomeRequestAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull RequestViewHolder holder, int position) {
-        Log.d(TAG, "onBindViewHolder");
-        Request req = requests.get(position).getRequest();
-        holder.locationTV.setText(req.order.location);
-        holder.vendorTV.setText(req.order.vendor);
-        holder.timeTV.setText(req.time.toString()); // how to display the time properly from firebase
+        Request req = requests.get(position);
+        Log.d(TAG, "onBindViewHolder: " + req);
+        if (req != null) {
+            holder.locationTV.setText(req.order.location);
+            holder.vendorTV.setText(req.order.vendor);
+            holder.timeTV.setText(req.time.toString()); // how to display the time properly from firebase
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -14,21 +14,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.kampung.controllers.DAO;
 import com.example.kampung.controllers.RequestsViewModel;
 import com.example.kampung.databinding.FragmentHomeBinding;
-import com.example.kampung.models.RequestAction;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
 
 public class HomeFragment extends Fragment {
 
     private final String TAG = "HomeFragment";
-    private RequestsViewModel requestsViewModel;
-    private ArrayList<RequestAction> requestList = new ArrayList<>();
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -40,15 +35,14 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        HomeRequestAdapter requestAdapter = new HomeRequestAdapter(getContext(), requestList);
+        HomeRequestAdapter requestAdapter = new HomeRequestAdapter(getContext());
         binding.recyclerBrowsereq.setAdapter(requestAdapter);
         binding.recyclerBrowsereq.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
-        requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), request -> {
-            Log.d(TAG, "nani " + request.toString());
-            requestList.add(request);
-            requestAdapter.notifyItemInserted(requestList.size() - 1);
+        RequestsViewModel requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
+        requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), requestMap -> {
+            requestAdapter.setRequests(requestMap);
+            requestAdapter.notifyDataSetChanged();
         });
     }
 
