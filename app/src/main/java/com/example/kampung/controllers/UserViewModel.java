@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModel;
 import com.example.kampung.models.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 
@@ -32,6 +31,7 @@ public class UserViewModel extends ViewModel {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
             Log.i(TAG, "onDataChange: " + snapshot);
+            userData.setValue(snapshot.getValue(User.class));
         }
 
         @Override
@@ -54,13 +54,21 @@ public class UserViewModel extends ViewModel {
         return userData;
     }
 
+    // For testing purposes
+    public ValueEventListener getUserListener() {
+        return mUserListener;
+    }
+    public void setUser(User user) {
+        userData.setValue(user);
+    }
+
     @Override
     protected void onCleared() {
         super.onCleared();
         if (mUserListener != null) {
             dao.removeUserListener(userListener);
+            mUserListener = null;
         }
     }
-
 
 }

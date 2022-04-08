@@ -18,7 +18,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 
@@ -28,22 +27,21 @@ public class TestRequestsViewModel {
     @Rule // -> allows liveData to work on different thread besides main, must be public!
     public InstantTaskExecutorRule executorRule = new InstantTaskExecutorRule();
 
+    private DataSnapshot snapShot;
+
     private RequestsViewModel requestsViewModel;
     private LiveData<RequestAction> liveRequestAction;
     private ChildEventListener listener;
-    private DataSnapshot snapShot;
-
-    @Mock
-    DAO dao;
 
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
-        dao = mock(DAO.class);
+        DAO dao = mock(DAO.class);
+        snapShot = mock(DataSnapshot.class);
+
         requestsViewModel = new RequestsViewModel();
         liveRequestAction = requestsViewModel.getRequests(dao);
         listener = requestsViewModel.getRequestListener();
-        snapShot = mock(DataSnapshot.class);
     }
 
     @Test
