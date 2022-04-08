@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment {
         return binding.getRoot();
     }
 
-    /*public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         HomeRequestAdapter requestAdapter = new HomeRequestAdapter(getContext(), requestList);
@@ -71,11 +71,12 @@ public class HomeFragment extends Fragment {
         });
 
 
-        // handles navigation to Dabao Fragment
-        *//*binding.buttonOrder.setOnClickListener(view1 ->
-                NavHostFragment.findNavController(MainFragment.this).navigate(R.id.action_FirstFragment_to_SecondFragment));*//*
+        /*// handles navigation to Dabao Fragment
+        //*binding.buttonOrder.setOnClickListener(view1 ->
+                NavHostFragment.findNavController(MainFragment.this).navigate(R.id.action_FirstFragment_to_SecondFragment));
+//**/
     }
-*/
+
 
 
     /*@Override

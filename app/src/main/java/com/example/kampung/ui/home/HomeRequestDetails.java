@@ -1,16 +1,26 @@
 package com.example.kampung.ui.home;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.kampung.R;
-
+import com.example.kampung.controllers.DAO;
+import com.example.kampung.controllers.UserViewModel;
 import com.example.kampung.databinding.FragmentHomeRequestDetailsBinding;
+import com.example.kampung.models.Request;
+import com.example.kampung.models.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +38,10 @@ public class HomeRequestDetails extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    Request req;
+    User currUser;
+    TextView location,vendor,time,telehandle,user, dest,food;
+    Button dabao;
 
     public HomeRequestDetails() {
         // Required empty public constructor
@@ -54,9 +68,10 @@ public class HomeRequestDetails extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundle=getArguments();
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
+            req = bundle.getParcelable("request");
         }
     }
 
@@ -65,7 +80,56 @@ public class HomeRequestDetails extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentHomeRequestDetailsBinding.inflate(inflater, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        binding.reqdetailsLocation.setText(req.order.location);
+        binding.reqdetailsDest.setText(req.dest);
+        binding.reqdetailsOrderdetails.setText(req.order.food);
+        binding.reqdetailsTelehandle.setText(req.user.telegramHandle);
+        binding.reqdetailsTime.setText(req.time.toString());
+        binding.reqdetailsVendor.setText(req.order.vendor);
+        binding.reqdetailsUser.setText(req.user.username);
+
+        binding.dabaoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "accepted", Toast.LENGTH_SHORT).show();
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity_bottom_nav);
+                navController.navigate(R.id.action_home_req_details_to_home);
+
+            }
+        });
+
+
+
+        UserViewModel userViewModel=new UserViewModel();
+        userViewModel.getUser(DAO.getInstance()).observe(getViewLifecycleOwner(), user ->{
+            currUser=user;
+        } );
+
+
+
         return binding.getRoot();
         //return inflater.inflate(R.layout.fragment_home_request_details, container, false);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.onDestroyView();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
+
+
+
 }

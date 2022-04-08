@@ -23,7 +23,7 @@
         tools:layout="@layout/fragment_home_request_details">
 
         <action
-            android:id="@+id/action_home_req_details_to_navigation_home"
+            android:id="@+id/action_home_req_details_to_home"
             app:destination="@id/navigation_home" />
     </fragment>
 
