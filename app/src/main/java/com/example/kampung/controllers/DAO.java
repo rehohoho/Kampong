@@ -21,10 +21,10 @@ public class DAO {
 
     private DatabaseReference requestDb;
     private DatabaseReference userDb;
+    private FirebaseDatabase db;
 
-    private DAO()
-    {
-        FirebaseDatabase db = FirebaseDatabase.getInstance();
+    private DAO() {
+        db = FirebaseDatabase.getInstance();
         requestDb = db.getReference(Request.class.getSimpleName());
         userDb = db.getReference(User.class.getSimpleName());
     }
@@ -36,30 +36,19 @@ public class DAO {
         return dao;
     }
 
-    public Task<Void> addRequest(Request request) {
-        String key = requestDb.push().getKey();
-        Map<String, Object> requestUpdates = new HashMap<>();
-        requestUpdates.put(key, request);
-        return requestDb.updateChildren(requestUpdates);
+    public Task<Void> add(Object value) {
+        DatabaseReference dbRef = db.getReference(value.getClass().getSimpleName());
+        String key = dbRef.push().getKey();
+        Map<String, Object> updates = new HashMap<>();
+        updates.put(key, value);
+        return dbRef.updateChildren(updates);
     }
 
-    public Task<Void> updateRequest(String key, Request request) {
-        Map<String, Object> requestUpdates = new HashMap<>();
-        requestUpdates.put(key, request);
-        return requestDb.updateChildren(requestUpdates);
-    }
-
-    public Task<Void> addUser(User user) {
-        String key = userDb.push().getKey();
-        Map<String, Object> userUpdates = new HashMap<>();
-        userUpdates.put(key, user);
-        return userDb.updateChildren(userUpdates);
-    }
-
-    public Task<Void> updateUser(String key, User user) {
-        Map<String, Object> userUpdates = new HashMap<>();
-        userUpdates.put(key, user);
-        return userDb.updateChildren(userUpdates);
+    public Task<Void> update(Object value, String key) {
+        DatabaseReference dbRef = db.getReference(value.getClass().getSimpleName());
+        Map<String, Object> updates = new HashMap<>();
+        updates.put(key, value);
+        return dbRef.updateChildren(updates);
     }
 
     public void addRequestsListener(ChildEventListener listener) {
