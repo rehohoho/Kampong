@@ -17,15 +17,14 @@ import java.util.Map;
 public class DAO {
 
     private final String TAG = "DAO";
-    private final String DB_USER_ID = "senat";
     private static DAO dao;
 
     private DatabaseReference requestDb;
     private DatabaseReference userDb;
+    private FirebaseDatabase db;
 
-    private DAO()
-    {
-        FirebaseDatabase db = FirebaseDatabase.getInstance();
+    private DAO() {
+        db = FirebaseDatabase.getInstance();
         requestDb = db.getReference(Request.class.getSimpleName());
         userDb = db.getReference(User.class.getSimpleName());
     }
@@ -37,18 +36,19 @@ public class DAO {
         return dao;
     }
 
-    public Task<Void> addRequest(Request request) {
-        String key = requestDb.push().getKey();
-        Map<String, Object> requestUpdates = new HashMap<>();
-        requestUpdates.put(key, request);
-        return requestDb.updateChildren(requestUpdates);
+    public Task<Void> add(Object value) {
+        DatabaseReference dbRef = db.getReference(value.getClass().getSimpleName());
+        String key = dbRef.push().getKey();
+        Map<String, Object> updates = new HashMap<>();
+        updates.put(key, value);
+        return dbRef.updateChildren(updates);
     }
 
-    public Task<Void> addUser(User user) {
-        String key = requestDb.push().getKey();
-        Map<String, Object> userUpdates = new HashMap<>();
-        userUpdates.put(key, user);
-        return userDb.push().setValue(userUpdates);
+    public Task<Void> update(Object value, String key) {
+        DatabaseReference dbRef = db.getReference(value.getClass().getSimpleName());
+        Map<String, Object> updates = new HashMap<>();
+        updates.put(key, value);
+        return dbRef.updateChildren(updates);
     }
 
     public void addRequestsListener(ChildEventListener listener) {
