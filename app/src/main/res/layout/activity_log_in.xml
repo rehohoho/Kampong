@@ -28,4 +28,13 @@
         tools:layout_editor_absoluteX="303dp" />
 <!--        android:onClick="login" />-->
 
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="remember my login information"
+        app:layout_constraintTop_toBottomOf="@+id/login" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
