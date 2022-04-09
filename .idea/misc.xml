@@ -47,7 +47,10 @@
         <entry key="..\:/repos/Kampung/app/src/main/res/layout/fragment_first.xml" value="0.1" />
         <entry key="..\:/repos/Kampung/app/src/main/res/layout/fragment_main.xml" value="0.12685185185185185" />
         <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.21345217162714902" />
+        <entry key="app/src/main/res/layout/fragment_create_req.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.1171875" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.12310030395136778" />
+        <entry key="app/src/main/res/layout/fragment_home_request_cardview.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home_request_details.xml" value="0.2391304347826087" />
         <entry key="app/src/main/res/layout/fragment_request_detail.xml" value="0.2391304347826087" />
         <entry key="app/src/main/res/layout/fragment_user_profile.xml" value="0.2391304347826087" />
