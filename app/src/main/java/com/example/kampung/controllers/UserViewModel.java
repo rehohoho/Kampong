@@ -25,8 +25,8 @@ public class UserViewModel extends ViewModel {
     private final String TAG = "UserViewModel";
     private MutableLiveData<User> userData;
 
-    private DatabaseReference mUserReference;
     private ValueEventListener mUserListener;
+    private DAO dao;
 
     private final ValueEventListener userListener = new ValueEventListener() {
         @Override
@@ -38,11 +38,16 @@ public class UserViewModel extends ViewModel {
         public void onCancelled(@NonNull DatabaseError error) {
             Log.w(TAG, "onCancelled: ", error.toException());
         }
+
+        public Boolean checkIfExists(DataSnapshot snapshot) {
+            return snapshot.exists();
+        }
     };
 
-    public LiveData<User> getUser() {
+    public LiveData<User> getUser(DAO dao) {
         if (userData == null) {
-            mUserReference.addValueEventListener(userListener);
+            this.dao = dao;
+            dao.addUserListener(userListener);
             mUserListener = userListener;
             userData = new MutableLiveData<>();
         }
@@ -53,7 +58,9 @@ public class UserViewModel extends ViewModel {
     protected void onCleared() {
         super.onCleared();
         if (mUserListener != null) {
-            mUserReference.removeEventListener(mUserListener);
+            dao.removeUserListener(userListener);
         }
     }
+
+
 }

@@ -16,13 +16,13 @@ import com.example.kampung.models.Request;
 import java.util.ArrayList;
 
 
-public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestViewHolder> {
+public abstract class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestViewHolder> {
 
     private final String TAG = "RequestAdapter";
     private final LayoutInflater mInflater;
     private ArrayList<Request> requests;
 
-    RequestAdapter(Context context, ArrayList<Request> requests) {
+    public RequestAdapter(Context context, ArrayList<Request> requests) {
         mInflater = LayoutInflater.from(context);
         this.requests = requests;
     }
@@ -32,15 +32,15 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
 
         public RequestViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewName = itemView.findViewById(R.id.card_text);
+            //textViewName = itemView.findViewById(R.id.card_text);
         }
     }
 
-    @Override
+    /*@Override
     public RequestViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View itemView = mInflater.inflate(R.layout.card_request, viewGroup, false);
-        return new RequestViewHolder(itemView);
-    }
+        *//*View itemView = mInflater.inflate(R.layout.card_request, viewGroup, false);
+        return new RequestViewHolder(itemView);*//*
+    }*/
 
     @Override
     public void onBindViewHolder(@NonNull RequestViewHolder holder, int position) {
