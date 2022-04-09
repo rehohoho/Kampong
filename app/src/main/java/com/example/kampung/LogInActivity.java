@@ -43,6 +43,10 @@ public class LogInActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+//                Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
+//                startActivity(intent);
+
                 // save checkbox preference
                 if (mCheckBox.isChecked()){
                     // set a checkbox when the application starts
@@ -53,6 +57,9 @@ public class LogInActivity extends AppCompatActivity {
                     String teleHandle = mTeleHandle.getText().toString();
                     mEditor.putString(getString(R.string.userTeleHandle), teleHandle);
                     mEditor.commit();
+
+                    Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
+                    startActivity(intent);
                 } else {
                     // set a checkbox when the application starts
                     mEditor.putString(getString(R.string.checkbox), "False");
@@ -61,6 +68,9 @@ public class LogInActivity extends AppCompatActivity {
                     // save the name
                     mEditor.putString(getString(R.string.userTeleHandle), "");
                     mEditor.commit();
+
+                    Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
+                    startActivity(intent);
                 }
             }
         });
