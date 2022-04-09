@@ -33,5 +33,6 @@
     
     <string name="checkbox">com.example.kampung</string>
     <string name="userTeleHandle">com.example.kampung</string>
+    <string name="request">Request</string>
 
 </resources>
