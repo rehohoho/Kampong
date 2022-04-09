@@ -30,5 +30,8 @@
     <string name="dest">dest</string>
     <string name="telehandle">telehandle</string>
     <string name="dabao">Dabao</string>
+    
+    <string name="checkbox">com.example.kampung</string>
+    <string name="userTeleHandle">com.example.kampung</string>
 
 </resources>
