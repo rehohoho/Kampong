@@ -18,27 +18,25 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_browsereq"
-        android:scrollbars="vertical"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_below="@id/text_request"
+        android:layout_centerInParent="true"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@id/text_requestlocation"
         android:layout_marginBottom="?attr/actionBarSize"
-        />
+        android:scrollbars="vertical" />
 
     <TextView
-        android:id="@+id/text_requestlocation"
+        android:id="@+id/text_request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/pt_serif_bold"
-        android:textColor="@color/black"
-        android:text="@string/request"
-        android:textSize="26sp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="15dp"
-        android:layout_marginStart="16dp"
-        />
+        android:fontFamily="@font/pt_serif_bold"
+        android:text="@string/request"
+        android:textColor="@color/black"
+        android:textSize="26sp" />
 
 
 </RelativeLayout>

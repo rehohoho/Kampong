@@ -53,8 +53,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
     @Override
     public void onBindViewHolder(@NonNull RequestViewHolder holder, int position) {
         Request request = mRequestList.get(position);
-        holder.destination.setText(request.dest);
-        holder.restaurant.setText(request.order.vendor);
+        holder.location.setText(request.order.vendor);
+        holder.restaurant.setText(request.order.location);
         holder.time.setText(request.time.toString());
         Log.i("结束执行","onbindviewholder");
     }
@@ -68,13 +68,13 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
 
         TextView time;
         TextView restaurant;
-        TextView destination;
+        TextView location;
 
         public RequestViewHolder(@NonNull View itemView) {
             super(itemView);  //super definition: this.itemView = itemView
             time=itemView.findViewById(R.id.publish_time);
             restaurant=itemView.findViewById(R.id.restaurant_name);
-            destination = itemView.findViewById(R.id.destination);
+            location = itemView.findViewById(R.id.location);
         }
     }
 }
