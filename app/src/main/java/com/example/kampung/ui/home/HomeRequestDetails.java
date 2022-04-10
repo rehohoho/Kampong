@@ -1,5 +1,7 @@
 package com.example.kampung.ui.home;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -21,6 +24,11 @@ import com.example.kampung.controllers.UserViewModel;
 import com.example.kampung.databinding.FragmentHomeRequestDetailsBinding;
 import com.example.kampung.models.Request;
 import com.example.kampung.models.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,6 +50,10 @@ public class HomeRequestDetails extends Fragment {
     User currUser;
     TextView location,vendor,time,telehandle,user, dest,food;
     Button dabao;
+    SharedPreferences mPreferences;
+    private FirebaseDatabase db=FirebaseDatabase.getInstance();
+    String reqkey;
+
 
     public HomeRequestDetails() {
         // Required empty public constructor
@@ -73,6 +85,9 @@ public class HomeRequestDetails extends Fragment {
 
             req = bundle.getParcelable("request");
         }
+
+        mPreferences=this.getContext().getSharedPreferences("com.example.kampung", Context.MODE_PRIVATE);
+
     }
 
     @Override
@@ -80,6 +95,15 @@ public class HomeRequestDetails extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentHomeRequestDetailsBinding.inflate(inflater, container, false);
+
+        UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class) ;
+        userViewModel.getUser(DAO.getInstance()).observe(getViewLifecycleOwner(), user -> {
+            currUser = user;
+        });
+
+        String telehandle=mPreferences.getString("telehandle","");
+
+
         binding.reqdetailsLocation.setText(req.order.location);
         binding.reqdetailsDest.setText(req.dest);
         binding.reqdetailsOrderdetails.setText(req.order.food);
@@ -91,18 +115,37 @@ public class HomeRequestDetails extends Fragment {
         binding.dabaoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "accepted", Toast.LENGTH_SHORT).show();
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity_bottom_nav);
-                navController.navigate(R.id.action_home_req_details_to_home);
+                req.setAccepted(telehandle);
+                DatabaseReference dbref=db.getReference("Request");
+                dbref.orderByChild("time")
+                        .equalTo(req.time)
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                                    reqkey = childSnapshot.getKey();
 
+                                }
+
+                                DAO.getInstance().update(req, reqkey);
+                                Toast.makeText(getContext(), "accepted", Toast.LENGTH_SHORT).show();
+                                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                                NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity_bottom_nav);
+                                navController.navigate(R.id.action_home_req_details_to_home);
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
             }
         });
 
-        UserViewModel userViewModel = new UserViewModel();
-        userViewModel.getUser(DAO.getInstance()).observe(getViewLifecycleOwner(), user -> {
-            currUser = user;
-        });
+
+
+
 
         return binding.getRoot();
     }

@@ -55,7 +55,7 @@ public class LogInActivity extends AppCompatActivity {
 
                     // save the name
                     String teleHandle = mTeleHandle.getText().toString();
-                    mEditor.putString(getString(R.string.userTeleHandle), teleHandle);
+                    mEditor.putString("telehandle", teleHandle);
                     mEditor.commit();
 
                     Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
@@ -66,7 +66,7 @@ public class LogInActivity extends AppCompatActivity {
                     mEditor.commit();
 
                     // save the name
-                    mEditor.putString(getString(R.string.userTeleHandle), "");
+                    mEditor.putString("telehandle", "");
                     mEditor.commit();
 
                     Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
