@@ -48,8 +48,6 @@ public class HomeRequestDetails extends Fragment {
     private String mParam2;
     Request req;
     User currUser;
-    TextView location,vendor,time,telehandle,user, dest,food;
-    Button dabao;
     SharedPreferences mPreferences;
     private FirebaseDatabase db=FirebaseDatabase.getInstance();
     String reqkey;
