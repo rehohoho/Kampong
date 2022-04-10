@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -100,7 +101,7 @@ public class HomeRequestDetails extends Fragment {
             }
         });
 
-        UserViewModel userViewModel = new UserViewModel();
+        UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class) ;
         userViewModel.getUser(DAO.getInstance()).observe(getViewLifecycleOwner(), user -> {
             currUser = user;
         });
