@@ -16,23 +16,26 @@
     <string name="title_activity_bottom_nav">Bottom_Nav_Activity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_user_profile">Profile</string>
+    <string name="title_user_profile">Posted By John</string>
     <string name="profile">User Profile</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="location">location</string>
-    <string name="restaurant">restaurant</string>
 
-
+    <string name="restaurant">Mcdonald’s</string>
+    <string name="location">Changi City Point</string>
     <string name="x_mins_ago">x mins ago</string>
 
     <string name="order">order</string>
-    <string name="dest">dest</string>
+    <string name="dest">SUTD Main Entrance</string>
     <string name="telehandle">telehandle</string>
     <string name="dabao">Dabao</string>
 
     <string name="checkbox">com.example.kampung</string>
     <string name="userTeleHandle">com.example.kampung</string>
-    <string name="request">Request</string>
+    <string name="request">Requests</string>
+    <string name="username">John</string>
+    <string name="teleHandle">\@Jonny</string>
+    <string name="phoneNumber">90430303</string>
+    <string name="order_details">Order Details</string>
 
 </resources>

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
-        app:itemIconSize="24dp"
+        app:itemIconSize="26dp"
         app:labelVisibilityMode="unlabeled"
         app:itemBackground="?selectableItemBackground"
         app:itemIconTint="@color/icon_tint_selector"
