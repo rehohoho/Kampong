@@ -39,7 +39,6 @@ public class UserProfileFragment extends Fragment {
 
     private TextView mUserTeleHandleTextView;
     private TextView userNameTextView;
-    private TextView userNumberTextView;
     private RecyclerView myRequestsRecyclerView;
     private List<Request> myRequests = new ArrayList<>();
     private List<String> myRequestKeys = new ArrayList<>();
