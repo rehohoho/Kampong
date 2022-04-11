@@ -61,7 +61,7 @@ public class HomeRequestAdapter extends RecyclerView.Adapter<HomeRequestAdapter.
         Request req = requests.get(position).getRequest();
         holder.locationTV.setText(req.order.location);
         holder.vendorTV.setText(req.order.vendor);
-        holder.timeTV.setText(req.time.toString()); // how to display the time properly from firebase
+        holder.timeTV.setText(req.getTimeInString()); // how to display the time properly from firebase
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
