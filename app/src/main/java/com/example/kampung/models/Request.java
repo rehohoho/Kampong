@@ -17,7 +17,8 @@ public class Request implements Parcelable {
     public Long time;
     public Long expireTime;
     public String dest;
-    public String isAccepted;
+    public Boolean isAccepted;
+    public User acceptedBy;
     public Boolean isDelivered;
 
     public Request() {
@@ -25,7 +26,7 @@ public class Request implements Parcelable {
     }
 
     public Request(
-        User user, Order order, Long time, Long expireTime, String dest, String isAccepted, Boolean isDelivered
+        User user, Order order, Long time, Long expireTime, String dest, Boolean isAccepted, Boolean isDelivered, User acceptedBy
     ) {
         this.user = user;
         this.order = order;
@@ -34,7 +35,9 @@ public class Request implements Parcelable {
         this.dest = dest;
         this.isAccepted = isAccepted;
         this.isDelivered = isDelivered;
+        this.acceptedBy=acceptedBy;
     }
+
 
     protected Request(Parcel in) {
         if (in.readByte() == 0) {
@@ -48,8 +51,8 @@ public class Request implements Parcelable {
             expireTime = in.readLong();
         }
         dest = in.readString();
-        isAccepted=in.readString();
-
+        byte tmpIsAccepted = in.readByte();
+        isAccepted = tmpIsAccepted == 0 ? null : tmpIsAccepted == 1;
         byte tmpIsDelivered = in.readByte();
         isDelivered = tmpIsDelivered == 0 ? null : tmpIsDelivered == 1;
     }
@@ -106,11 +109,11 @@ public class Request implements Parcelable {
         this.dest = dest;
     }
 
-    public String getAccepted() {
+    public Boolean getAccepted() {
         return isAccepted;
     }
 
-    public void setAccepted(String accepted) {
+    public void setAccepted(Boolean accepted) {
         isAccepted = accepted;
     }
 
@@ -155,6 +158,7 @@ public class Request implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+
         if (time == null) {
             parcel.writeByte((byte) 0);
         } else {
@@ -168,7 +172,9 @@ public class Request implements Parcelable {
             parcel.writeLong(expireTime);
         }
         parcel.writeString(dest);
-        parcel.writeString(isAccepted);
+        parcel.writeByte((byte) (isAccepted == null ? 0 : isAccepted ? 1 : 2));
         parcel.writeByte((byte) (isDelivered == null ? 0 : isDelivered ? 1 : 2));
     }
+
+
 }

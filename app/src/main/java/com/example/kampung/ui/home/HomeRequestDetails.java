@@ -113,7 +113,7 @@ public class HomeRequestDetails extends Fragment {
         binding.dabaoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                req.setAccepted(telehandle);
+                req.setAccepted(true);
                 DatabaseReference dbref=db.getReference("Request");
                 dbref.orderByChild("time")
                         .equalTo(req.time)
