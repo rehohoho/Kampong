@@ -69,6 +69,14 @@ public class Request implements Parcelable {
         }
     };
 
+    public User getAcceptedBy() {
+        return acceptedBy;
+    }
+
+    public void setAcceptedBy(User acceptedBy) {
+        this.acceptedBy = acceptedBy;
+    }
+
     public User getUser() {
         return user;
     }
@@ -176,5 +184,15 @@ public class Request implements Parcelable {
         parcel.writeByte((byte) (isDelivered == null ? 0 : isDelivered ? 1 : 2));
     }
 
-
+    public String getTimeInString(){
+        long currentTime = System.currentTimeMillis();
+        int pastSeconds = (int) (currentTime-time)/1000;
+        int day = pastSeconds/86400;
+        int hour = (pastSeconds%86400)/3600;
+        int minute = (pastSeconds%86400%3600)%60;
+        String s = minute+" min";
+        if (hour!=0) s = hour+" h "+s;
+        if (day!=0) s = day+" d "+s;
+        return s;
+    }
 }

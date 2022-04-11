@@ -54,5 +54,8 @@
         <argument
             android:name="requestKey"
             app:argType="string" />
+        <action
+            android:id="@+id/action_requestDetailFragment_to_navigation_user_profile"
+            app:destination="@id/navigation_user_profile" />
     </fragment>
 </navigation>

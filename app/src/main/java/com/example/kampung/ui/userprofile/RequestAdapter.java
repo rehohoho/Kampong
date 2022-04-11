@@ -55,8 +55,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
         Request request = mRequestList.get(position);
         holder.location.setText(request.order.vendor);
         holder.restaurant.setText(request.order.location);
-        holder.time.setText(request.time.toString());
-        Log.i("结束执行","onbindviewholder");
+        holder.time.setText(request.getTimeInString());
     }
 
     @Override

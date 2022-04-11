@@ -39,4 +39,6 @@
     <string name="order_details">Order Details</string>
     <string name="new_request">New Request</string>
 
+    <string name="is_delivered">Order has been delivered</string>
+
 </resources>
