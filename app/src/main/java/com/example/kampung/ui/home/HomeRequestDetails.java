@@ -92,9 +92,18 @@ public class HomeRequestDetails extends Fragment {
         binding.reqdetailsDest.setText(req.dest);
         binding.reqdetailsOrderdetails.setText(req.order.food);
         binding.reqdetailsTelehandle.setText(req.user.telegramHandle);
-        binding.reqdetailsTime.setText(req.time.toString());
+        binding.reqdetailsTime.setText(req.getTimeInString());
         binding.reqdetailsVendor.setText(req.order.vendor);
         binding.reqdetailsUser.setText(req.user.username);
+        if (req.order.location.equals("SUTD Canteen")) {
+            binding.locationImg.setImageResource(R.drawable.sutd);
+        } else if (req.order.location.equals("Eastpoint Mall")) {
+            binding.locationImg.setImageResource(R.drawable.eastpoint);
+        } else if (req.order.location.equals("Changi City Point")) {
+            binding.locationImg.setImageResource(R.drawable.ccp);
+        } else {
+            binding.locationImg.setImageResource(R.drawable.simpang);
+        }
 
         binding.dabaoButton.setOnClickListener(new View.OnClickListener() {
             @Override
