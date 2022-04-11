@@ -101,7 +101,7 @@ public class UserProfileFragment extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Request req = snapshot.getValue(Request.class);
                 String reqKey = snapshot.getKey();
-                if (req.getUser().username.equals(userName) && req.getUser().telegramHandle.equals(userTeleHandle)){
+                if (req.user.username.equals(userName) && req.user.telegramHandle.equals(userTeleHandle)){
                     myRequests.add(req);
                     myRequestKeys.add(reqKey);
                 }

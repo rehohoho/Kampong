@@ -23,27 +23,23 @@ public class Request implements Parcelable {
     public Boolean isDelivered;
     public Integer uniqueID;
 
-    Random random = new Random();
-
-
     public Request() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
     }
 
     public Request(
-        User user, Order order, Long time, Long expireTime, String dest, Boolean isAccepted, Boolean isDelivered, User acceptedBy, int uniqueID
+        User user, Order order, Long expireTime, String dest, Boolean isAccepted, Boolean isDelivered, User acceptedBy
     ) {
         this.user = user;
         this.order = order;
-        this.time = time;
+        this.time = System.currentTimeMillis();
         this.expireTime = expireTime;
         this.dest = dest;
         this.isAccepted = isAccepted;
         this.isDelivered = isDelivered;
         this.acceptedBy = acceptedBy;
-        this.uniqueID = uniqueID;
+        this.uniqueID = new Random().nextInt(1000);
     }
-
 
     protected Request(Parcel in) {
         if (in.readByte() == 0) {
@@ -74,77 +70,6 @@ public class Request implements Parcelable {
             return new Request[size];
         }
     };
-
-    public User getAcceptedBy() {
-        return acceptedBy;
-    }
-
-    public void setAcceptedBy(User acceptedBy) {
-        this.acceptedBy = acceptedBy;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Long getTime() {
-        return time;
-    }
-
-    public void setTime(Long time) {
-        this.time = time;
-    }
-
-    public Long getExpireTime() {
-        return expireTime;
-    }
-
-    public void setExpireTime(Long expireTime) {
-        this.expireTime = expireTime;
-    }
-
-    public String getDest() {
-        return dest;
-    }
-
-    public void setDest(String dest) {
-        this.dest = dest;
-    }
-
-    public Boolean getAccepted() {
-        return isAccepted;
-    }
-
-    public void setAccepted(Boolean accepted) {
-        isAccepted = accepted;
-    }
-
-    public Boolean getDelivered() {
-        return isDelivered;
-    }
-
-    public void setDelivered(Boolean delivered) {
-        isDelivered = delivered;
-    }
-
-    public int getUniqueID() {
-        return uniqueID;
-    }
-    public void setUID() {
-        this.uniqueID = random.nextInt(1000);
-    }
 
     @Exclude // excludes field from database
     public Map<String, Object> toMap() {

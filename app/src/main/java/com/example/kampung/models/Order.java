@@ -20,15 +20,6 @@ public class Order {
     }
 
     public Order(
-        String location, String vendor, String food, Boolean meal
-    ) {
-        this.location = location;
-        this.vendor = vendor;
-        this.food = food;
-        this.meal = meal;
-    }
-
-    public Order(
         String location, String vendor, String food, Boolean meal, String remarks
     ) {
         this.location = location;
@@ -47,45 +38,5 @@ public class Order {
         result.put("meal", meal.toString());
         result.put("remarks", remarks);
         return result;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getVendor() {
-        return vendor;
-    }
-
-    public void setVendor(String vendor) {
-        this.vendor = vendor;
-    }
-
-    public String getFood() {
-        return food;
-    }
-
-    public void setFood(String food) {
-        this.food = food;
-    }
-
-    public Boolean getMeal() {
-        return meal;
-    }
-
-    public void setMeal(Boolean meal) {
-        this.meal = meal;
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
     }
 }

@@ -114,7 +114,7 @@ public class HomeRequestDetails extends Fragment {
                     req.isAccepted=true;
                     req.acceptedBy=UserSingleton.getInstance().getUser();
                     DAO dao = DAO.getInstance();
-                    dao.update(req, req.getUniqueID());
+                    dao.update(req, req.uniqueID);
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity_bottom_nav);
                     navController.navigate(R.id.action_home_req_details_to_home);

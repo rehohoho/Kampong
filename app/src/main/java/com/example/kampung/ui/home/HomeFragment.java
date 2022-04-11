@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
             requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
             requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), request -> {
 
-                if (request.getRequest().getOrder().getLocation().equals(SearchActivity.query)) {
+                if (request.getRequest().order.location.equals(SearchActivity.query)) {
                     requestList.add(request);
                     requestAdapter.notifyItemInserted(requestList.size() - 1);
                 }
@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment {
             requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
             requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), request -> {
 
-                if(!request.getRequest().getAccepted() && request.getActionId() == RequestAction.ACTION_ID.ADDED){
+                if(!request.getRequest().isDelivered && request.getActionId() == RequestAction.ACTION_ID.ADDED){
                     requestList.add(request);
                     requestAdapter.notifyItemInserted(requestList.size() - 1);
                 }

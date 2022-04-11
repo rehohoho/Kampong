@@ -124,14 +124,14 @@ public class RequestDetailFragment extends Fragment {
         if (mRequest == null) {
             Log.d("TAG", "Request not their");
         } else{
-            orderDetailTextView.setText(mRequest.getOrder().food);
-            requestLocationTextView.setText(mRequest.getDest());
-            vendorTextView.setText(mRequest.getOrder().vendor);
-            userTextView.setText("posted by: " + mRequest.getUser().username);
-            teleHandleTextView.setText("@" + mRequest.getUser().telegramHandle);
-            destTextView.setText(mRequest.getDest());
-            if (mRequest.getAccepted())
-                acceptedByTextView.setText(mRequest.getAcceptedBy().username);
+            orderDetailTextView.setText(mRequest.order.food);
+            requestLocationTextView.setText(mRequest.dest);
+            vendorTextView.setText(mRequest.order.vendor);
+            userTextView.setText("posted by: " + mRequest.user.username);
+            teleHandleTextView.setText("@" + mRequest.user.telegramHandle);
+            destTextView.setText(mRequest.dest);
+            if (mRequest.isAccepted)
+                acceptedByTextView.setText(mRequest.acceptedBy.username);
             else {
                 TextView t = view.findViewById(R.id.text_accepted);
                 t.setText("No one accept");
@@ -144,11 +144,8 @@ public class RequestDetailFragment extends Fragment {
     }
 
     private void setConfirmButton(View view){
-        Log.i("isdelivered",String.valueOf(mRequest.isDelivered));
-        Log.i("getdelivered",String.valueOf(mRequest.getDelivered()));
-        Log.i("tostring",mRequest.toString());
         confirmButton = view.findViewById(R.id.delivered_button);
-        if (mRequest.getDelivered()) {
+        if (mRequest.isDelivered) {
             confirmButton.setEnabled(false);
             confirmButton.setText(R.string.is_delivered);
 

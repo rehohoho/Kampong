@@ -94,7 +94,7 @@ public class SearchActivity extends AppCompatActivity {
                 Toast.makeText(SearchActivity.this, "Displaying " + locations.get(position) + " queries", Toast.LENGTH_SHORT).show();
 //                Log.d(TAG, locations.get(position));
                 for (Request request : list) {
-                    if (request.getOrder().getLocation().equals(locations.get(position))) {
+                    if (request.order.location.equals(locations.get(position))) {
 //                        Log.d("SearchActQueryReceive", request.toString());
                         display.add(request);
                     }
