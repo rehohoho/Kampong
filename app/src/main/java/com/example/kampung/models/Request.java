@@ -20,13 +20,16 @@ public class Request implements Parcelable {
     public Boolean isAccepted;
     public User acceptedBy;
     public Boolean isDelivered;
+    public Integer uniqueID;
+
+    private static int ID = 0;
 
     public Request() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
     }
 
     public Request(
-        User user, Order order, Long time, Long expireTime, String dest, Boolean isAccepted, Boolean isDelivered, User acceptedBy
+        User user, Order order, Long time, Long expireTime, String dest, Boolean isAccepted, Boolean isDelivered, User acceptedBy, int uniqueID
     ) {
         this.user = user;
         this.order = order;
@@ -35,7 +38,8 @@ public class Request implements Parcelable {
         this.dest = dest;
         this.isAccepted = isAccepted;
         this.isDelivered = isDelivered;
-        this.acceptedBy=acceptedBy;
+        this.acceptedBy = acceptedBy;
+        this.uniqueID = uniqueID;
     }
 
 
@@ -131,6 +135,14 @@ public class Request implements Parcelable {
 
     public void setDelivered(Boolean delivered) {
         isDelivered = delivered;
+    }
+
+    public Integer getUniqueID() {
+        return uniqueID;
+    }
+    public void setUID() {
+        this.uniqueID = ID;
+        ID += 1;
     }
 
     @Exclude // excludes field from database

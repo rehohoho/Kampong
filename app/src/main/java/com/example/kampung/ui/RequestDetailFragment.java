@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kampung.R;
+import com.example.kampung.controllers.DAO;
 import com.example.kampung.models.Request;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -120,23 +121,27 @@ public class RequestDetailFragment extends Fragment {
         timeTextView = view.findViewById(R.id.reqdetails_time);
     }
 
-    private void setViews(View view){
-        orderDetailTextView.setText(mRequest.getOrder().food);
-        requestLocationTextView.setText(mRequest.getDest());
-        vendorTextView.setText(mRequest.getOrder().vendor);
-        userTextView.setText("posted by: "+mRequest.getUser().username);
-        teleHandleTextView.setText("@"+mRequest.getUser().telegramHandle);
-        destTextView.setText(mRequest.getDest());
-        if (mRequest.getAccepted())
-            acceptedByTextView.setText(mRequest.getAcceptedBy().username);
-        else{
-            TextView t = view.findViewById(R.id.text_accepted);
-            t.setText("No one accept");
+    private void setViews(View view) {
+        if (mRequest == null) {
+            Log.d("TAG", "Request not their");
+        } else{
+            orderDetailTextView.setText(mRequest.getOrder().food);
+            requestLocationTextView.setText(mRequest.getDest());
+            vendorTextView.setText(mRequest.getOrder().vendor);
+            userTextView.setText("posted by: " + mRequest.getUser().username);
+            teleHandleTextView.setText("@" + mRequest.getUser().telegramHandle);
+            destTextView.setText(mRequest.getDest());
+            if (mRequest.getAccepted())
+                acceptedByTextView.setText(mRequest.getAcceptedBy().username);
+            else {
+                TextView t = view.findViewById(R.id.text_accepted);
+                t.setText("No one accept");
+            }
+
+            timeTextView.setText(mRequest.getTimeInString());
+            setConfirmButton(view);
+
         }
-
-        timeTextView.setText(mRequest.getTimeInString());
-        setConfirmButton(view);
-
     }
 
     private void setConfirmButton(View view){
@@ -152,11 +157,16 @@ public class RequestDetailFragment extends Fragment {
             confirmButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    reqNodRef.child(requestKey).child("isDelivered").setValue(true);
-                    reqNodRef.child(requestKey).child("delivered").setValue(true);
+
+                    DAO dao = DAO.getInstance();
+                    dao.remove("Request", requestKey);
+
 
                     Toast.makeText(getContext(), "Delivery confirmed", Toast.LENGTH_SHORT).show();
                     Navigation.findNavController(view).navigate(R.id.action_requestDetailFragment_to_navigation_user_profile);
+//                    reqNodRef.child(requestKey).child("isDelivered").setValue(true);
+//                    Toast.makeText(getContext(), "Delivery confirmed", Toast.LENGTH_SHORT).show();
+//                    Navigation.findNavController(view).navigate(R.id.action_requestDetailFragment_to_navigation_user_profile);
                 }
             });
         }

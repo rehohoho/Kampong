@@ -110,32 +110,15 @@ public class HomeRequestDetails extends Fragment {
             public void onClick(View view) {
                 req.isAccepted=true;
                 req.acceptedBy=UserSingleton.getInstance().getUser();
-                DatabaseReference dbref=db.getReference("Request");
-                dbref.orderByChild("time")
-                        .equalTo(req.time)
                         .addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                                    reqkey = childSnapshot.getKey();
+                DatabaseReference dbref = db.getReference("Request");
+                DAO dao = DAO.getInstance();
+                dao.update(req, req.getUniqueID());
+            }});
 
-                                }
 
-                                DAO.getInstance().update(req, reqkey);
-                                Toast.makeText(getContext(), "accepted", Toast.LENGTH_SHORT).show();
-                                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                                NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity_bottom_nav);
-                                navController.navigate(R.id.action_home_req_details_to_home);
 
-                            }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-            }
-        });
 
 
 

@@ -83,17 +83,18 @@ public class CreateRequestFragment extends Fragment {
                 request.setDelivered(false);
                 request.setTime(System.currentTimeMillis());
                 request.setDest(pickuplist.getSelectedItem().toString());
+                request.setUID();
                 order.setFood(bOrder.getText().toString());
                 order.setLocation(locationlist.getSelectedItem().toString());
                 order.setVendor(bRestaurant.getText().toString());
                 request.setOrder(order);
                 DAO dao = DAO.getInstance();
-                dao.add(request);
-
                 Toast.makeText(getContext(),"Request created!", Toast.LENGTH_SHORT).show();
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity_bottom_nav);
                 navController.navigate(R.id.action_navigation_dashboard_to_navigation_home);
+                dao.add(request, request.getUniqueID());
+
             }
         });
     }

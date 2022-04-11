@@ -44,11 +44,27 @@ public class DAO {
         return dbRef.updateChildren(updates);
     }
 
-    public Task<Void> update(Object value, String key) {
+    public Task<Void> add(Object value, Integer key) {
         DatabaseReference dbRef = db.getReference(value.getClass().getSimpleName());
+        dbRef.push().getKey();
+        String keyStr = key.toString();
         Map<String, Object> updates = new HashMap<>();
-        updates.put(key, value);
+        updates.put(keyStr, value);
         return dbRef.updateChildren(updates);
+
+    }
+
+    public Task<Void> update(Object value, Integer key) {
+        DatabaseReference dbRef = db.getReference(value.getClass().getSimpleName());
+        String keyStr = key.toString();
+        Map<String, Object> updates = new HashMap<>();
+        updates.put(keyStr, value);
+        return dbRef.updateChildren(updates);
+    }
+
+    public void remove(String path, String key){
+        DatabaseReference dbRef = db.getReference(path);
+        dbRef.child(key).removeValue();
     }
 
     public void addRequestsListener(ChildEventListener listener) {
