@@ -87,7 +87,6 @@ public class RequestDetailFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Request request = snapshot.getValue(Request.class);
                         mRequest = request;
-                        Log.i("newly pulled request",request.toString());
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
