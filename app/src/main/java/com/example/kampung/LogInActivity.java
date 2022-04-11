@@ -8,7 +8,9 @@ import androidx.navigation.Navigation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Trace;
 import android.view.View;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.kampung.controllers.DAO;
 import com.example.kampung.models.User;
+import com.example.kampung.utility.NetworkChangeListener;
 import com.example.kampung.utility.SharedPrefs;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -162,6 +165,20 @@ public class LogInActivity extends AppCompatActivity {
 
     }
 
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
+    // CHECK INTERNET CONNECTION
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener, filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
+    }
 
 
 

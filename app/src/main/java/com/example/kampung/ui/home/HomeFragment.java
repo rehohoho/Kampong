@@ -46,13 +46,10 @@ public class HomeFragment extends Fragment {
 
         requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
         requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), request -> {
-            Log.d(TAG, "nani " + request.toString());
-            if(request.getRequest().getAccepted()==false){
+            if(!request.getRequest().getAccepted()){
                 requestList.add(request);
                 requestAdapter.notifyItemInserted(requestList.size() - 1);
-
             }
-
         });
     }
 

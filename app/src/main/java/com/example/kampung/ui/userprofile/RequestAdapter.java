@@ -2,7 +2,6 @@ package com.example.kampung.ui.userprofile;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.kampung.R;
 import com.example.kampung.models.Request;
 
-import java.util.ArrayList;
 import java.util.List;
+
 
 public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestViewHolder> {
     Context context;
@@ -64,7 +63,6 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
     }
 
     static class RequestViewHolder extends RecyclerView.ViewHolder{
-
         TextView time;
         TextView restaurant;
         TextView location;

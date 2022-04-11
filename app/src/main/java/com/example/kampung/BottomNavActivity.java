@@ -1,8 +1,11 @@
 package com.example.kampung;
 
 import android.content.Context;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
+import com.example.kampung.utility.NetworkChangeListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +31,22 @@ public class BottomNavActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.nav_view);
         NavigationUI.setupWithNavController(bottomNav, navController);
 
+    }
+
+
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
+    // CHECK INTERNET CONNECTION
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener, filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
     }
 
 }

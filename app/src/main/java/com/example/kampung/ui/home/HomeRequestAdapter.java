@@ -27,14 +27,10 @@ public class HomeRequestAdapter extends RecyclerView.Adapter<HomeRequestAdapter.
     private final String TAG = "RequestAdapter";
     private final LayoutInflater mInflater;
     private ArrayList<RequestAction> requests;
-    private NavController navController;
-    private String reqKey;
 
     public HomeRequestAdapter(Context context, ArrayList<RequestAction> requests) {
         mInflater = LayoutInflater.from(context);
         this.requests = requests;
-        //navController=navcontroller;
-
     }
 
     static class RequestViewHolder extends RecyclerView.ViewHolder{
@@ -46,7 +42,6 @@ public class HomeRequestAdapter extends RecyclerView.Adapter<HomeRequestAdapter.
             vendorTV = itemView.findViewById(R.id.text_restaurant);
             timeTV = itemView.findViewById(R.id.text_reqtime_elapsed);
         }
-
     }
 
     @Override
