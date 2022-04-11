@@ -59,6 +59,7 @@ public class LogInActivity extends AppCompatActivity {
         mEditor = mPreferences.edit();
 
         checkSharePreferences();
+        mCheckBox.setChecked(true);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

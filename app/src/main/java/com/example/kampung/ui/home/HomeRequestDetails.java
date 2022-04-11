@@ -91,10 +91,10 @@ public class HomeRequestDetails extends Fragment {
         binding.reqdetailsLocation.setText(req.order.location);
         binding.reqdetailsDest.setText(req.dest);
         binding.reqdetailsOrderdetails.setText(req.order.food);
-        binding.reqdetailsTelehandle.setText(req.user.telegramHandle);
+        binding.reqdetailsTelehandle.setText("@"+req.user.telegramHandle);
         binding.reqdetailsTime.setText(req.getTimeInString());
         binding.reqdetailsVendor.setText(req.order.vendor);
-        binding.reqdetailsUser.setText(req.user.username);
+        binding.reqdetailsUser.setText("Posted by:"+req.user.username);
         if (req.order.location.equals("SUTD Canteen")) {
             binding.locationImg.setImageResource(R.drawable.sutd);
         } else if (req.order.location.equals("Eastpoint Mall")) {

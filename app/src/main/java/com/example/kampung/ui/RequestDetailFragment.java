@@ -137,7 +137,6 @@ public class RequestDetailFragment extends Fragment {
 
     }
 
-
     private void setConfirmButton(View view){
         Log.i("isdelivered",String.valueOf(mRequest.isDelivered));
         Log.i("getdelivered",String.valueOf(mRequest.getDelivered()));
