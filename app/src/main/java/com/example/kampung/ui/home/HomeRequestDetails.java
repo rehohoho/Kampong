@@ -95,15 +95,10 @@ public class HomeRequestDetails extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentHomeRequestDetailsBinding.inflate(inflater, container, false);
 
-        UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class) ;
-        userViewModel.getUser(DAO.getInstance()).observe(getViewLifecycleOwner(), user -> {
-            currUser = user;
-        });
-
-        String telehandle=mPreferences.getString("telehandle","");
-        binding.reqdetailsLocation.setText(UserSingleton.getInstance().getUser().username);
 
 
+
+        binding.reqdetailsLocation.setText(req.order.location);
         binding.reqdetailsDest.setText(req.dest);
         binding.reqdetailsOrderdetails.setText(req.order.food);
         binding.reqdetailsTelehandle.setText(req.user.telegramHandle);

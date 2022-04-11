@@ -1,7 +1,10 @@
 package com.example.kampung;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,14 +16,18 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.kampung.controllers.DAO;
 import com.example.kampung.models.User;
 import com.example.kampung.utility.SharedPrefs;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -31,6 +38,8 @@ public class LogInActivity extends AppCompatActivity {
     private FirebaseDatabase db=FirebaseDatabase.getInstance();
     private ImageButton btnLogin;
     private CheckBox mCheckBox;
+    private User currUser;
+
 
 
     @Override
@@ -51,9 +60,9 @@ public class LogInActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//                Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
-//                startActivity(intent);
+                String teleHandle = mTeleHandle.getText().toString();
+                String userName = mUsername.getText().toString();
+                //
 
                 // save checkbox preference
                 if (mCheckBox.isChecked()){
@@ -61,21 +70,23 @@ public class LogInActivity extends AppCompatActivity {
                     mEditor.putString(getString(R.string.checkbox), "True");
                     mEditor.commit();
 
-                    // save tele handle
-                    String teleHandle = mTeleHandle.getText().toString();
                     //DatabaseReference dbref=db.getReference("Users");
                     //DAO.getInstance().add(currUser);
                     mEditor.putString(getString(R.string.userTeleHandle), teleHandle);
                     mEditor.commit();
 
                     // save username
-                    String userName = mUsername.getText().toString();
+
                     mEditor.putString(getString(R.string.username), userName);
                     mEditor.commit();
 
 
-                    Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
-                    startActivity(intent);
+                    currUser=new User(userName,teleHandle);
+
+                    mEditor.putString("telehandle", teleHandle);
+                    mEditor.putString("username",userName);
+                    mEditor.commit();
+
                 } else {
                     // set a checkbox when the application starts
                     mEditor.putString(getString(R.string.checkbox), "False");
@@ -89,9 +100,48 @@ public class LogInActivity extends AppCompatActivity {
                     mEditor.putString(getString(R.string.username), "");
                     mEditor.commit();
 
-                    Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
-                    startActivity(intent);
+                    currUser=new User(userName,teleHandle);
+
+
+
                 }
+
+                DatabaseReference dbref=db.getReference("User");
+
+                dbref.orderByChild("telegramHandle")
+                        .equalTo(teleHandle)
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                String reqkey=null;
+                                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                                    reqkey = childSnapshot.getKey();
+
+                                }
+                                if(reqkey==null){
+                                    UserSingleton.getInstance(currUser);
+                                    DAO.getInstance().add(currUser);
+                                    Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
+                                    startActivity(intent);
+                                }
+                                else{
+                                    UserSingleton.getInstance(currUser);
+                                    Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
+                                    startActivity(intent);
+
+                                }
+
+
+
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
             }
         });
     }
@@ -111,6 +161,13 @@ public class LogInActivity extends AppCompatActivity {
         }
 
     }
+
+
+
+
+
+
+
 
 
 }
