@@ -19,6 +19,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.kampung.R;
+import com.example.kampung.UserSingleton;
 import com.example.kampung.controllers.DAO;
 import com.example.kampung.controllers.UserViewModel;
 import com.example.kampung.databinding.FragmentHomeRequestDetailsBinding;
@@ -100,9 +101,9 @@ public class HomeRequestDetails extends Fragment {
         });
 
         String telehandle=mPreferences.getString("telehandle","");
+        binding.reqdetailsLocation.setText(UserSingleton.getInstance().getUser().username);
 
 
-        binding.reqdetailsLocation.setText(req.order.location);
         binding.reqdetailsDest.setText(req.dest);
         binding.reqdetailsOrderdetails.setText(req.order.food);
         binding.reqdetailsTelehandle.setText(req.user.telegramHandle);
@@ -113,7 +114,8 @@ public class HomeRequestDetails extends Fragment {
         binding.dabaoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                req.setAccepted(true);
+                req.isAccepted=true;
+                req.acceptedBy=UserSingleton.getInstance().getUser();
                 DatabaseReference dbref=db.getReference("Request");
                 dbref.orderByChild("time")
                         .equalTo(req.time)
