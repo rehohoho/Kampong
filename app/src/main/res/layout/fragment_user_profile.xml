@@ -66,35 +66,12 @@
         android:textSize="12sp" />
 
 
-    <ImageView
-        android:id="@+id/number_icon"
-        android:layout_width="17dp"
-        android:layout_height="17dp"
-        android:layout_below="@id/telegram_icon"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/ic_phone" />
-
-    <TextView
-        android:id="@+id/phone_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/number_icon"
-        android:layout_alignTop="@+id/number_icon"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/raleway_semibold"
-        android:gravity="start"
-        android:text="@string/phoneNumber"
-        android:textColor="#B3000000"
-        android:textSize="12sp" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="315dp"
         android:layout_height="1dp"
-        android:layout_below="@id/phone_number"
+        android:layout_below="@id/telegram_handle"
         android:layout_centerInParent="true"
         android:background="#33612500" />
 
