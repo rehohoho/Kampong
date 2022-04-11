@@ -110,7 +110,6 @@ public class HomeRequestDetails extends Fragment {
             public void onClick(View view) {
                 req.isAccepted=true;
                 req.acceptedBy=UserSingleton.getInstance().getUser();
-                        .addListenerForSingleValueEvent(new ValueEventListener() {
                 DatabaseReference dbref = db.getReference("Request");
                 DAO dao = DAO.getInstance();
                 dao.update(req, req.getUniqueID());
