@@ -189,7 +189,7 @@ public class Request implements Parcelable {
         int pastSeconds = (int) (currentTime-time)/1000;
         int day = pastSeconds/86400;
         int hour = (pastSeconds%86400)/3600;
-        int minute = (pastSeconds%86400%3600)%60;
+        int minute = (pastSeconds%86400%3600)/60;
         String s = minute+" min";
         if (hour!=0) s = hour+" h "+s;
         if (day!=0) s = day+" d "+s;

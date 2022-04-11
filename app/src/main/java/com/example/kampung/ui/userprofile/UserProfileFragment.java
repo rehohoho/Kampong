@@ -50,6 +50,9 @@ public class UserProfileFragment extends Fragment {
     private NavController navController;
     private SharedPreferences mSharedPreferences;
 
+    private String userTeleHandle;
+    private String userName;
+
     public UserProfileFragment() {
         // Required empty public constructor
     }
@@ -99,8 +102,7 @@ public class UserProfileFragment extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Request req = snapshot.getValue(Request.class);
                 String reqKey = snapshot.getKey();
-                if (req.getUser().username.equals(userNameTextView.getText())&& req.getUser().telegramHandle.equals(mUserTeleHandleTextView.getText())){
-
+                if (req.getUser().username.equals(userName) && req.getUser().telegramHandle.equals(userTeleHandle)){
                     myRequests.add(req);
                     myRequestKeys.add(reqKey);
                 }
@@ -132,13 +134,12 @@ public class UserProfileFragment extends Fragment {
 
     private void setUserProfile(View view){
         mSharedPreferences = getContext().getSharedPreferences("com.example.kampung", Context.MODE_PRIVATE);
-        String userTeleHandle = mSharedPreferences.getString(getString(R.string.userTeleHandle)," ");
+        userTeleHandle = mSharedPreferences.getString(getString(R.string.userTeleHandle)," ");
         mUserTeleHandleTextView=view.findViewById(R.id.telegram_handle);
         mUserTeleHandleTextView.setText("@"+userTeleHandle);
         userNameTextView=view.findViewById(R.id.username);
-        userNameTextView.setText(mSharedPreferences.getString(getString(R.string.userTeleHandle),  " "));
-        userNumberTextView=view.findViewById(R.id.phone_number);
-        userNumberTextView.setText(mSharedPreferences.getString(getString(R.string.username), " "));
+        userName = mSharedPreferences.getString(getString(R.string.userTeleHandle),  " ");
+        userNameTextView.setText(userName);
     }
 
 }
