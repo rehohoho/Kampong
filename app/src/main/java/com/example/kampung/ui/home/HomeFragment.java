@@ -46,10 +46,14 @@ public class HomeFragment extends Fragment {
 
         requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
         requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), request -> {
-            if(!request.getRequest().getAccepted()){
-                requestList.add(request);
-                requestAdapter.notifyItemInserted(requestList.size() - 1);
-            }
+                if(request!=null){
+                    if (!request.getRequest().getAccepted()) {
+                        requestList.add(request);
+                        requestAdapter.notifyItemInserted(requestList.size() - 1);
+                    }
+                }
+
+
         });
     }
 
