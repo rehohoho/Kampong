@@ -80,11 +80,13 @@ public class RequestDetailFragment extends Fragment {
             @Override
             public void run() {
                 requestKey = getArguments().getString("requestKey");
+                Log.i("requestKey is",requestKey);
                 reqNodRef.child(requestKey).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Request request = snapshot.getValue(Request.class);
                         mRequest = request;
+                        Log.i("newly pulled request",request.toString());
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
@@ -150,9 +152,11 @@ public class RequestDetailFragment extends Fragment {
             confirmButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    /*reqNodRef.child(requestKey).child("isDelivered").setValue(true);
+                    reqNodRef.child(requestKey).child("isDelivered").setValue(true);
+                    reqNodRef.child(requestKey).child("delivered").setValue(true);
+
                     Toast.makeText(getContext(), "Delivery confirmed", Toast.LENGTH_SHORT).show();
-                    Navigation.findNavController(view).navigate(R.id.action_requestDetailFragment_to_navigation_user_profile);*/
+                    Navigation.findNavController(view).navigate(R.id.action_requestDetailFragment_to_navigation_user_profile);
                 }
             });
         }

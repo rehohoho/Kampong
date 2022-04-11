@@ -42,6 +42,7 @@ public class UserProfileFragment extends Fragment {
     private TextView userNumberTextView;
     private RecyclerView myRequestsRecyclerView;
     private List<Request> myRequests = new ArrayList<>();
+    private List<String> myRequestKeys = new ArrayList<>();
 
     private DatabaseReference mDatabaseRootRef;
     private DatabaseReference requestNodeRef;
@@ -98,8 +99,12 @@ public class UserProfileFragment extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Request req = snapshot.getValue(Request.class);
                 String reqKey = snapshot.getKey();
-                myRequests.add(req);
-                myRequestsRecyclerView.setAdapter(new RequestAdapter(getContext(), myRequests,navController,reqKey));
+                if (req.getUser().username.equals(userNameTextView.getText())&& req.getUser().telegramHandle.equals(mUserTeleHandleTextView.getText())){
+
+                    myRequests.add(req);
+                    myRequestKeys.add(reqKey);
+                }
+                myRequestsRecyclerView.setAdapter(new RequestAdapter(getContext(), myRequests,navController,myRequestKeys));
             }
 
             @Override
