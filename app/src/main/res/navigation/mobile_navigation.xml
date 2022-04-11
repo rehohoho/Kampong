@@ -34,7 +34,11 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.example.kampung.ui.createrequest.CreateRequestFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_create_req" />
+        tools:layout="@layout/fragment_create_req" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_user_profile"

@@ -8,13 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.kampung.R;
 import com.example.kampung.UserSingleton;
@@ -26,7 +29,6 @@ import com.example.kampung.models.User;
 public class CreateRequestFragment extends Fragment {
     private Spinner locationlist, pickuplist, requestduelist;
     private SharedPreferences mPreferences;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -87,6 +89,11 @@ public class CreateRequestFragment extends Fragment {
                 request.setOrder(order);
                 DAO dao = DAO.getInstance();
                 dao.add(request);
+
+                Toast.makeText(getContext(),"Request created!", Toast.LENGTH_SHORT).show();
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity_bottom_nav);
+                navController.navigate(R.id.action_navigation_dashboard_to_navigation_home);
             }
         });
     }
@@ -94,6 +101,5 @@ public class CreateRequestFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
     }
 }
