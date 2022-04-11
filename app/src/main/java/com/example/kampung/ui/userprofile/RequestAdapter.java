@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -25,11 +26,16 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
     NavController navController;
 
     RequestAdapter(Context context,List<Request> mRequestList,NavController hostNavController,List<String> requestKeys){
-        mInflater = LayoutInflater.from(context);
-        this.context = context;
-        this.mRequestList = mRequestList;
-        navController = hostNavController;
-        requestKeyList = requestKeys;
+        if(context!=null){ //changed
+            mInflater = LayoutInflater.from(context);
+            this.context = context;
+            this.mRequestList = mRequestList;
+            navController = hostNavController;
+            requestKeyList = requestKeys;
+        }
+
+
+
     }
 
     @NonNull
