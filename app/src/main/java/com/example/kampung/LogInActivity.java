@@ -117,9 +117,9 @@ public class LogInActivity extends AppCompatActivity {
                         .addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                String reqkey=null;
+                                User reqkey=null;
                                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                                    reqkey = childSnapshot.getKey();
+                                    reqkey = childSnapshot.getValue(User.class);
 
                                 }
                                 if(reqkey==null){
@@ -129,7 +129,8 @@ public class LogInActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }
                                 else{
-                                    UserSingleton.getInstance(currUser);
+                                    UserSingleton.getInstance(reqkey);
+                                    Toast.makeText(LogInActivity.this, "user found", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
                                     startActivity(intent);
 

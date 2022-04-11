@@ -109,7 +109,8 @@ public class HomeRequestDetails extends Fragment {
             @Override
             public void onClick(View view) {
                 User curruser=UserSingleton.getInstance().getUser();
-                if(curruser.telegramHandle!=req.user.telegramHandle){
+                if(!curruser.telegramHandle.equals(req.user.telegramHandle)){
+                    Toast.makeText(getContext(),req.user.telegramHandle+"+"+curruser.telegramHandle,Toast.LENGTH_SHORT).show();
                     req.isAccepted=true;
                     req.acceptedBy=UserSingleton.getInstance().getUser();
                     DAO dao = DAO.getInstance();

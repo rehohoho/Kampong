@@ -17,7 +17,7 @@ public class UserSingleton {
             instance= new UserSingleton(user);
         }
 
-        if(instance.getUser()!=user){
+        else if(instance.getUser().telegramHandle!=user.telegramHandle){
             instance=new UserSingleton(user);
         }
         return instance;
