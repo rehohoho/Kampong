@@ -151,9 +151,9 @@ public class RequestDetailFragment extends Fragment {
             confirmButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    reqNodRef.child(requestKey).child("isDelivered").setValue(true);
+                    /*reqNodRef.child(requestKey).child("isDelivered").setValue(true);
                     Toast.makeText(getContext(), "Delivery confirmed", Toast.LENGTH_SHORT).show();
-                    Navigation.findNavController(view).navigate(R.id.action_requestDetailFragment_to_navigation_user_profile);
+                    Navigation.findNavController(view).navigate(R.id.action_requestDetailFragment_to_navigation_user_profile);*/
                 }
             });
         }
