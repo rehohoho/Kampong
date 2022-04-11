@@ -7,21 +7,17 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.kampung.R;
 import com.example.kampung.UserSingleton;
 import com.example.kampung.controllers.DAO;
-import com.example.kampung.controllers.UserViewModel;
 import com.example.kampung.databinding.FragmentHomeRequestDetailsBinding;
 import com.example.kampung.models.Request;
 import com.example.kampung.models.User;
@@ -81,12 +77,9 @@ public class HomeRequestDetails extends Fragment {
         super.onCreate(savedInstanceState);
         Bundle bundle=getArguments();
         if (getArguments() != null) {
-
             req = bundle.getParcelable("request");
         }
-
-        mPreferences=this.getContext().getSharedPreferences("com.example.kampung", Context.MODE_PRIVATE);
-
+        mPreferences = getContext().getSharedPreferences("com.example.kampung", Context.MODE_PRIVATE);
     }
 
     @Override
@@ -94,9 +87,6 @@ public class HomeRequestDetails extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentHomeRequestDetailsBinding.inflate(inflater, container, false);
-
-
-
 
         binding.reqdetailsLocation.setText(req.order.location);
         binding.reqdetailsDest.setText(req.dest);

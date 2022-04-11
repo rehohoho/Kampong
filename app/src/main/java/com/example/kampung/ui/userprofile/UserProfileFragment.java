@@ -68,8 +68,6 @@ public class UserProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         return inflater.inflate(R.layout.fragment_user_profile, container, false);
     }
 
@@ -82,9 +80,7 @@ public class UserProfileFragment extends Fragment {
         setDatabase();
 
         myRequestsRecyclerView = view.findViewById(R.id.my_requests);
-
         myRequestsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-
     }
 
     @Override
@@ -138,8 +134,6 @@ public class UserProfileFragment extends Fragment {
         userNameTextView.setText(mSharedPreferences.getString(getString(R.string.userTeleHandle),  " "));
         userNumberTextView=view.findViewById(R.id.phone_number);
         userNumberTextView.setText(mSharedPreferences.getString(getString(R.string.username), " "));
-
     }
-
 
 }
