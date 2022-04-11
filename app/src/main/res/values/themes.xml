@@ -15,10 +15,19 @@
         <item name="fontFamily">@font/raleway_semibold</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:editTextStyle">@style/editTextStyle</item>
     </style>
 
     <style name="Theme.Kampung.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    //Text Field Style
+    <style name="editTextStyle" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:textColor">#B3000000</item>
+        <item name="android:padding">5pt</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
     </style>
 </resources>

@@ -37,5 +37,6 @@
     <string name="teleHandle">\@Jonny</string>
     <string name="phoneNumber">90430303</string>
     <string name="order_details">Order Details</string>
+    <string name="new_request">New Request</string>
 
 </resources>

@@ -10,71 +10,150 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_userprofile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/pt_serif_bold"
+            android:layout_gravity="center"
+            android:text="@string/new_request"
+            android:textColor="@color/black"
+            android:textSize="26sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/raleway_semibold"
+            android:textColor="#B3000000"
+            android:textAllCaps="true"
             android:text="Recipient Name:" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/editTextStyle"
+            android:background="@drawable/button_shape"
             android:id="@+id/reqname" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Location" />
+            android:fontFamily="@font/raleway_semibold"
+            android:textColor="#B3000000"
+            android:textAllCaps="true"
+            android:text="Location:" />
 
-        <Spinner
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/reqlocation" />
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_shape">
+            <Spinner
+                android:id="@+id/reqlocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:dropDownWidth="match_parent"
+                android:layout_marginBottom="5pt"
+                android:layout_marginTop="5pt"
+                android:spinnerMode="dropdown" />
+        </FrameLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_semibold"
+            android:textColor="#B3000000"
+            android:textAllCaps="true"
             android:text="Restaurant Name:" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/editTextStyle"
+            android:background="@drawable/button_shape"
             android:id="@+id/reqrestaurant" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_semibold"
+            android:textColor="#B3000000"
+            android:textAllCaps="true"
             android:text="Order Details:" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/editTextStyle"
+            android:gravity="top|left"
+            android:lines="3"
+            android:background="@drawable/button_shape"
             android:id="@+id/reqorderdeets" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_semibold"
+            android:textColor="#B3000000"
+            android:textAllCaps="true"
             android:text="Pickup Point:" />
 
-        <Spinner
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/reqpickup" />
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_shape">
+            <Spinner
+                android:id="@+id/reqpickup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:dropDownWidth="match_parent"
+                android:layout_marginBottom="5pt"
+                android:layout_marginTop="5pt"
+                android:spinnerMode="dropdown" />
+        </FrameLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_semibold"
+            android:textColor="#B3000000"
+            android:textAllCaps="true"
             android:text="Request Due In:" />
 
-        <Spinner
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/reqdue" />
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_shape">
+            <Spinner
+                android:id="@+id/reqdue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:dropDownWidth="match_parent"
+                android:layout_marginBottom="5pt"
+                android:layout_marginTop="5pt"
+                android:spinnerMode="dropdown" />
+        </FrameLayout>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/raleway_semibold"
+            android:textAllCaps="true"
+            app:cornerRadius="10dp"
+            android:padding="5pt"
+            android:layout_marginTop="25dp"
             android:text="Create Request"
             android:id="@+id/createreq"/>
 
