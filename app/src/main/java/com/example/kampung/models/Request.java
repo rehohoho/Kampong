@@ -8,6 +8,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 @IgnoreExtraProperties // ignore class fields not mapped to properties
 public class Request implements Parcelable {
@@ -22,7 +23,8 @@ public class Request implements Parcelable {
     public Boolean isDelivered;
     public Integer uniqueID;
 
-    private static int ID = 0;
+    Random random = new Random();
+
 
     public Request() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
@@ -137,12 +139,11 @@ public class Request implements Parcelable {
         isDelivered = delivered;
     }
 
-    public Integer getUniqueID() {
+    public int getUniqueID() {
         return uniqueID;
     }
     public void setUID() {
-        this.uniqueID = ID;
-        ID += 1;
+        this.uniqueID = random.nextInt(1000);
     }
 
     @Exclude // excludes field from database
