@@ -138,7 +138,7 @@ public class UserProfileFragment extends Fragment {
         mUserTeleHandleTextView=view.findViewById(R.id.telegram_handle);
         mUserTeleHandleTextView.setText("@"+userTeleHandle);
         userNameTextView=view.findViewById(R.id.username);
-        userName = mSharedPreferences.getString(getString(R.string.userTeleHandle),  " ");
+        userName = mSharedPreferences.getString(getString(R.string.username),  " ");
         userNameTextView.setText(userName);
     }
 
