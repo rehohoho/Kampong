@@ -61,15 +61,18 @@ public class LogInActivity extends AppCompatActivity {
                     mEditor.putString(getString(R.string.checkbox), "True");
                     mEditor.commit();
 
-                    // save the name
+                    // save tele handle
                     String teleHandle = mTeleHandle.getText().toString();
-                    String userName=mUsername.getText().toString();
-                    User currUser=new User(userName,teleHandle);
                     //DatabaseReference dbref=db.getReference("Users");
                     //DAO.getInstance().add(currUser);
-                    mEditor.putString("telehandle", teleHandle);
-                    mEditor.putString("username",userName);
+                    mEditor.putString(getString(R.string.userTeleHandle), teleHandle);
                     mEditor.commit();
+
+                    // save username
+                    String userName = mUsername.getText().toString();
+                    mEditor.putString(getString(R.string.username), userName);
+                    mEditor.commit();
+
 
                     Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
                     startActivity(intent);
@@ -78,9 +81,12 @@ public class LogInActivity extends AppCompatActivity {
                     mEditor.putString(getString(R.string.checkbox), "False");
                     mEditor.commit();
 
-                    // save the name
-                    mEditor.putString("telehandle", "");
-                    mEditor.putString("username","");
+                    // save tele handle
+                    mEditor.putString(getString(R.string.userTeleHandle), "");
+                    mEditor.commit();
+
+                    // save username
+                    mEditor.putString(getString(R.string.username), "");
                     mEditor.commit();
 
                     Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
@@ -92,8 +98,8 @@ public class LogInActivity extends AppCompatActivity {
 
     private void checkSharePreferences() {
         String checkbox = mPreferences.getString(getString(R.string.checkbox), "False");
-        String userTeleHandle = mPreferences.getString("telehandle", "");
-        String username=mPreferences.getString("username","");
+        String userTeleHandle = mPreferences.getString(getString(R.string.userTeleHandle), "");
+        String username = mPreferences.getString(getString(R.string.username),"");
 
         mTeleHandle.setText(userTeleHandle);
         mUsername.setText(username);
