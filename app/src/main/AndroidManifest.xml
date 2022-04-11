@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kampung">
         <activity
-            android:name=".SearchActivity"
+            android:name=".ui.search.SearchActivity"
             android:exported="true" >
 <!--        <intent-filter>-->
 <!--            <action android:name="android.intent.action.MAIN" />-->

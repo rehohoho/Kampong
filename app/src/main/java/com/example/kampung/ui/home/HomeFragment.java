@@ -14,7 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.kampung.controllers.DAO;
 import com.example.kampung.controllers.RequestsViewModel;
 import com.example.kampung.databinding.FragmentHomeBinding;
+import com.example.kampung.models.Request;
 import com.example.kampung.models.RequestAction;
+import com.example.kampung.ui.search.SearchActivity;
+import com.example.kampung.ui.search.SearchRequestAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -40,18 +43,41 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        HomeRequestAdapter requestAdapter = new HomeRequestAdapter(getContext(), requestList);
-        binding.recyclerBrowsereq.setAdapter(requestAdapter);
-        binding.recyclerBrowsereq.setLayoutManager(new LinearLayoutManager(getContext()));
+        Log.d(TAG, "View Created");
+        Log.d(TAG, SearchActivity.query);
+        if (SearchActivity.query.length() > 0) {
 
-        requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
-        requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), request -> {
+            Log.d(TAG, "SearchActivity show");
+            SearchActivity.query = "";
+            SearchRequestAdapter requestAdapter = new SearchRequestAdapter(getContext(), requestList);
+            binding.recyclerBrowsereq.setAdapter(requestAdapter);
+            binding.recyclerBrowsereq.setLayoutManager(new LinearLayoutManager(getContext()));
+            requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
+            requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), request -> {
 
-            if(!request.getRequest().getAccepted() && request.getActionId() == RequestAction.ACTION_ID.ADDED){
-                requestList.add(request);
-                requestAdapter.notifyItemInserted(requestList.size() - 1);
-            }
-        });
+                if (request.getRequest().getOrder().getLocation().equals(SearchActivity.query)) {
+                    requestList.add(request);
+                    requestAdapter.notifyItemInserted(requestList.size() - 1);
+                }
+
+            });
+        }
+        else {
+            Log.d(TAG, "No Search");
+            HomeRequestAdapter requestAdapter = new HomeRequestAdapter(getContext(), requestList);
+            binding.recyclerBrowsereq.setAdapter(requestAdapter);
+            binding.recyclerBrowsereq.setLayoutManager(new LinearLayoutManager(getContext()));
+
+            requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
+            requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), request -> {
+
+                if(!request.getRequest().getAccepted() && request.getActionId() == RequestAction.ACTION_ID.ADDED){
+                    requestList.add(request);
+                    requestAdapter.notifyItemInserted(requestList.size() - 1);
+                }
+            });
+        }
+
     }
 
     /*@Override

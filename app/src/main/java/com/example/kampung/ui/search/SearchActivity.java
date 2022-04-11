@@ -1,8 +1,9 @@
-package com.example.kampung;
+package com.example.kampung.ui.search;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -16,8 +17,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.kampung.controllers.DAO;
+import com.example.kampung.BottomNavActivity;
+import com.example.kampung.R;
 import com.example.kampung.models.Request;
+import com.example.kampung.models.RequestAction;
 import com.example.kampung.utility.NetworkChangeListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,7 +34,13 @@ public class SearchActivity extends AppCompatActivity {
 
     private static final String TAG = "SearchActivity";
     private ArrayAdapter adapter;
-    final static ArrayList<Request> display = new ArrayList<>();
+    public static ArrayList<Request> display = new ArrayList<>();
+    public static boolean show = false;
+    public static String query = "";
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +51,7 @@ public class SearchActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: Started.");
 
 
+        query = "";
         // ARRAYLIST OF LOCATIONS
         ArrayList<String> locations = new ArrayList<>();
         locations.add("Changi City Point");
@@ -60,10 +70,10 @@ public class SearchActivity extends AppCompatActivity {
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                Log.d("SearchActDataChange", "Data Changed");
+//                Log.d(TAG, "Data Changed");
                 list.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    Log.d("snapshot", snapshot.toString());
+//                    Log.d(TAG, snapshot.toString());
                     list.add(snapshot.getValue(Request.class));
                 }
                 adapter.notifyDataSetChanged();
@@ -82,14 +92,19 @@ public class SearchActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 display.clear();
                 Toast.makeText(SearchActivity.this, "Displaying " + locations.get(position) + " queries", Toast.LENGTH_SHORT).show();
-//                Log.d("SearchActQuerySend", locations.get(position));
+//                Log.d(TAG, locations.get(position));
                 for (Request request : list) {
                     if (request.getOrder().getLocation().equals(locations.get(position))) {
 //                        Log.d("SearchActQueryReceive", request.toString());
                         display.add(request);
                     }
                 }
-//                Log.d("SearchActDisplay", display.toString());
+                show = true;
+                query = locations.get(position);
+                Intent myIntent = new Intent(SearchActivity.this, BottomNavActivity.class);
+                SearchActivity.this.startActivity(myIntent);
+
+//                Log.d(TAG, display.toString());
             }
         });
 

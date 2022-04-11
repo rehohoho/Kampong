@@ -1,6 +1,7 @@
 package com.example.kampung;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class BottomNavActivity extends AppCompatActivity {
 
         binding = ActivityBottomNavBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Intent intent = getIntent();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_bottom_nav);
         BottomNavigationView bottomNav = findViewById(R.id.nav_view);
