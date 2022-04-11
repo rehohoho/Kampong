@@ -1,41 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     tools:context=".LogInActivity">
+
+    <ImageView
+        android:id="@+id/bg_house"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="-20dp"
+        android:layout_marginBottom="-130dp"
+        android:src="@drawable/bg_fork_spoon" />
+
+    <ImageView
+        android:id="@+id/bg_fish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/text_Kampong"
+        android:layout_alignBottom="@id/text_Kampong"
+        android:layout_marginEnd="-20dp"
+        android:src="@drawable/bg_fishes" />
+
+    <TextView
+        android:id="@+id/text_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/text_Kampong"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/pt_serif_bold"
+        android:text="Welcome"
+        android:textColor="@color/black"
+        android:textSize="36dp" />
+
+    <TextView
+        android:id="@+id/text_Kampong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/telehandle"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/pt_serif_bold"
+        android:text="to Kampong."
+        android:textColor="@color/black"
+        android:textSize="36dp" />
 
     <EditText
         android:id="@+id/telehandle"
+        style="@style/editTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Telegram Handle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints,TouchTargetSizeCheck"
-        tools:layout_editor_absoluteX="24dp" />
+        android:layout_centerInParent="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/btn_login"
+        android:gravity="center"
+        android:hint="Enter Telegram Handle" />
 
-    <Button
+    <ImageButton
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log In"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/telehandle"
-        app:layout_constraintVertical_bias="0"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="303dp" />
-<!--        android:onClick="login" />-->
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_arow"
+        android:padding="12dp"
+        android:background="@drawable/btn_round"
+        app:tint="@color/white" />
 
     <CheckBox
         android:id="@+id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="remember my login information"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login" />
+        android:layout_below="@id/telehandle"
+        android:layout_centerInParent="true"
+        android:text="remember my login information" />
 
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.example.kampung.utility.SharedPrefs;
 import com.google.android.material.textfield.TextInputEditText;
@@ -23,7 +24,7 @@ public class LogInActivity extends AppCompatActivity {
     private SharedPreferences.Editor mEditor;
 
     private EditText mTeleHandle;
-    private Button btnLogin;
+    private ImageButton btnLogin;
     private CheckBox mCheckBox;
 
 
@@ -33,7 +34,7 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
 
         mTeleHandle = (EditText) findViewById(R.id.telehandle);
-        btnLogin = (Button) findViewById(R.id.login);
+        btnLogin = (ImageButton) findViewById(R.id.login);
         mCheckBox = (CheckBox) findViewById(R.id.checkbox);
         mPreferences = getSharedPreferences("com.example.kampung", Context.MODE_PRIVATE);
         mEditor = mPreferences.edit();

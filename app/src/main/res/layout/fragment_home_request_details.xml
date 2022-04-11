@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="fill_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -15,188 +15,197 @@
         android:layout_marginBottom="20dp"
         android:src="@drawable/bg_fish" />
 
-    <TextView
-        android:id="@+id/text_userprofile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="15dp"
-        android:fontFamily="@font/pt_serif_bold"
-        android:text="@string/order_details"
-        android:textColor="@color/black"
-        android:textSize="26sp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/location_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginTop="80dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        app:cardCornerRadius="16dp">
-        <ImageView
-            android:id="@+id/location_img"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="180dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ccp"/>
-    </androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/location_icon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_below="@+id/location_card"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/ic_location" />
+            <TextView
+                android:id="@+id/text_orderdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/pt_serif_bold"
+                android:text="@string/order_details"
+                android:textColor="@color/black"
+                android:textSize="26sp" />
 
-    <TextView
-        android:id="@+id/reqdetails_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/location_icon"
-        android:layout_alignTop="@+id/location_icon"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="3dp"
-        android:fontFamily="@font/raleway_semibold"
-        android:gravity="start"
-        android:text="@string/location"
-        android:textAllCaps="true"
-        android:textColor="@color/brown"
-        android:textSize="12sp" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/location_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="80dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                app:cardCornerRadius="16dp">
+                <ImageView
+                    android:id="@+id/location_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="180dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ccp"/>
+            </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/reqdetails_vendor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/location_icon"
-        android:layout_alignStart="@+id/location_icon"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/pt_serif_bold"
-        android:gravity="start"
-        android:text="@string/restaurant"
-        android:textColor="#081F32"
-        android:textSize="24sp" />
+            <ImageView
+                android:id="@+id/location_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_below="@+id/location_card"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/ic_location" />
 
-    <TextView
-        android:id="@+id/reqdetails_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/location_icon"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="25dp"
-        android:fontFamily="@font/raleway_semibold"
-        android:gravity="end"
-        android:text="@string/x_mins_ago"
-        android:textColor="#80000000"
-        android:textSize="12sp" />
+            <TextView
+                android:id="@+id/reqdetails_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/location_icon"
+                android:layout_alignTop="@+id/location_icon"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/raleway_semibold"
+                android:gravity="start"
+                android:text="@string/location"
+                android:textAllCaps="true"
+                android:textColor="@color/brown"
+                android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/reqdetails_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/reqdetails_vendor"
-        android:layout_alignTop="@+id/reqdetails_vendor"
-        android:layout_marginTop="35dp"
-        android:fontFamily="@font/raleway_semibold"
-        android:gravity="start"
-        android:text="@string/title_user_profile"
-        android:textAllCaps="true"
-        android:textColor="#B3000000"
-        android:textSize="12sp" />
+            <TextView
+                android:id="@+id/reqdetails_vendor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/location_icon"
+                android:layout_alignStart="@+id/location_icon"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/pt_serif_bold"
+                android:gravity="start"
+                android:text="@string/restaurant"
+                android:textColor="#081F32"
+                android:textSize="24sp" />
 
-    <ImageView
-        android:id="@+id/telegram_icon"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_below="@id/reqdetails_user"
-        android:layout_alignStart="@+id/reqdetails_vendor"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/ic_telegram" />
+            <TextView
+                android:id="@+id/reqdetails_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/location_icon"
+                android:layout_alignEnd="@id/location_card"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/raleway_semibold"
+                android:gravity="end"
+                android:text="@string/x_mins_ago"
+                android:textColor="#80000000"
+                android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/reqdetails_telehandle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/telegram_icon"
-        android:layout_alignTop="@+id/telegram_icon"
-        android:layout_marginStart="23dp"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/raleway_semibold"
-        android:gravity="start"
-        android:text="@string/teleHandle"
-        android:textColor="#B3000000"
-        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/reqdetails_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/reqdetails_vendor"
+                android:layout_alignTop="@+id/reqdetails_vendor"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/raleway_semibold"
+                android:gravity="start"
+                android:text="@string/title_user_profile"
+                android:textAllCaps="true"
+                android:textColor="#B3000000"
+                android:textSize="12sp" />
 
+            <ImageView
+                android:id="@+id/telegram_icon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_below="@id/reqdetails_user"
+                android:layout_alignStart="@+id/reqdetails_vendor"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_telegram" />
 
-    <ImageView
-        android:id="@+id/car_icon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_below="@id/telegram_icon"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/ic_car" />
-
-    <TextView
-        android:id="@+id/reqdetails_dest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/car_icon"
-        android:layout_alignTop="@+id/car_icon"
-        android:layout_marginStart="23dp"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/raleway_semibold"
-        android:gravity="start"
-        android:text="@string/dest"
-        android:textColor="#B3000000"
-        android:textSize="14sp" />
-
-    <ImageView
-        android:id="@+id/food_icon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_below="@id/car_icon"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/ic_food" />
-
-    <TextView
-        android:id="@+id/reqdetails_orderdetails"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/food_icon"
-        android:layout_alignTop="@+id/food_icon"
-        android:layout_marginStart="23dp"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/raleway_semibold"
-        android:gravity="start"
-        android:text="@string/order"
-        android:textColor="#B3000000"
-        android:textSize="14sp" />
-
-    <Button
-        android:id="@+id/dabao_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/reqdetails_orderdetails"
-        android:layout_alignStart="@+id/food_icon"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/raleway_semibold"
-        android:text="@string/dabao"
-        app:backgroundTint="@color/orange_theme"
-        app:cornerRadius="30dp" />
+            <TextView
+                android:id="@+id/reqdetails_telehandle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/telegram_icon"
+                android:layout_alignTop="@+id/telegram_icon"
+                android:layout_marginStart="23dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/raleway_semibold"
+                android:gravity="start"
+                android:text="@string/teleHandle"
+                android:textColor="#B3000000"
+                android:textSize="14sp" />
 
 
+            <ImageView
+                android:id="@+id/car_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_below="@id/telegram_icon"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_car" />
+
+            <TextView
+                android:id="@+id/reqdetails_dest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/car_icon"
+                android:layout_alignTop="@+id/car_icon"
+                android:layout_marginStart="23dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/raleway_semibold"
+                android:gravity="start"
+                android:text="@string/dest"
+                android:textColor="#B3000000"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/food_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_below="@id/car_icon"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_food" />
+
+            <TextView
+                android:id="@+id/reqdetails_orderdetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/food_icon"
+                android:layout_alignTop="@+id/food_icon"
+                android:layout_marginStart="23dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/raleway_semibold"
+                android:gravity="start"
+                android:text="@string/order"
+                android:textColor="#B3000000"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/dabao_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/reqdetails_orderdetails"
+                android:layout_alignStart="@+id/food_icon"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="50dp"
+                android:fontFamily="@font/raleway_semibold"
+                android:text="@string/dabao"
+                app:backgroundTint="@color/orange_theme"
+                app:cornerRadius="30dp" />
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

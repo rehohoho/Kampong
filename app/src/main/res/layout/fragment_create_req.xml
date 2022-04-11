@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="?attr/actionBarSize"
     tools:context=".ui.createrequest.CreateRequestFragment">
 
     <LinearLayout
@@ -15,7 +16,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/text_userprofile"
+            android:id="@+id/text_newrequest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
@@ -153,7 +154,8 @@
             android:textAllCaps="true"
             app:cornerRadius="10dp"
             android:padding="5pt"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="40dp"
             android:text="Create Request"
             android:id="@+id/createreq"/>
 
