@@ -84,7 +84,7 @@ public class RequestDetailFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        textView = view.findViewById(R.id.request_detail);
+        textView = view.findViewById(R.id.reqdetails_orderdetails);
         dbRootRef = FirebaseDatabase.getInstance().getReference();
         reqNodRef = dbRootRef.child("Request");
         String requestKey = getArguments().getString("requestKey");
