@@ -108,11 +108,20 @@ public class HomeRequestDetails extends Fragment {
         binding.dabaoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                req.isAccepted=true;
-                req.acceptedBy=UserSingleton.getInstance().getUser();
-                DatabaseReference dbref = db.getReference("Request");
-                DAO dao = DAO.getInstance();
-                dao.update(req, req.getUniqueID());
+                User curruser=UserSingleton.getInstance().getUser();
+                if(curruser.telegramHandle!=req.user.telegramHandle){
+                    req.isAccepted=true;
+                    req.acceptedBy=UserSingleton.getInstance().getUser();
+                    DAO dao = DAO.getInstance();
+                    dao.update(req, req.getUniqueID());
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                    NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity_bottom_nav);
+                    navController.navigate(R.id.action_home_req_details_to_home);
+                }
+                else{
+                    Toast.makeText(getContext(),"cannot accept own request",Toast.LENGTH_SHORT).show();
+                }
+
             }});
 
 
