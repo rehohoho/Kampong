@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background ="@color/teal_700"
+    android:background ="@color/orange_theme"
     android:gravity="center"
     android:orientation="vertical">
     
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        app:tint="@color/teal_200"
+        app:tint="@color/white"
         android:src="@drawable/wifi"
         android:layout_gravity="center"
         android:contentDescription="No Internet Connection" />
@@ -22,7 +22,7 @@
         android:textStyle="bold"
         android:textSize="40sp"
         android:gravity="center"
-        android:textColor="@color/teal_200" />
+        android:textColor="@color/orange_light" />
 
     <TextView
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
         android:text="No Internet Connection"
         android:textSize="25sp"
         android:gravity="center"
-        android:textColor="@color/teal_200" />
+        android:textColor="@color/orange_light" />
 
     <TextView
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
         android:text="Please check your network settings"
         android:textSize="18sp"
         android:gravity="center"
-        android:textColor="@color/teal_200" />
+        android:textColor="@color/orange_light" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRetry"
@@ -48,7 +48,7 @@
         android:textStyle="bold"
         android:textAllCaps="true"
         android:text="retry"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:background="@drawable/button_shape"/>
 
 

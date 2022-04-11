@@ -2,6 +2,8 @@ package com.example.kampung;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.kampung.utility.NetworkChangeListener;
 
 import java.util.ArrayList;
 
@@ -52,6 +56,7 @@ public class SearchActivity extends AppCompatActivity {
             }
 
             // TODO: IMPLEMENT ONITEMCLICK TO SEND QUERY WHEN BUTTON CLICKED TO DISPLAY A FRAGMENT OF ALL REQUESTS WITHIN THE QUERIED LOCATION
+
         });
 
 
@@ -73,5 +78,20 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
+    // CHECK INTERNET CONNECTION
+    @Override
+    protected void onStart() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListener, filter);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(networkChangeListener);
+        super.onStop();
     }
 }
