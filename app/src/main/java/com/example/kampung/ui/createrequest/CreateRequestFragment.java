@@ -17,9 +17,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.kampung.R;
+import com.example.kampung.UserSingleton;
 import com.example.kampung.controllers.DAO;
 import com.example.kampung.models.Order;
 import com.example.kampung.models.Request;
+import com.example.kampung.models.User;
 
 public class CreateRequestFragment extends Fragment {
     private Spinner locationlist, pickuplist, requestduelist;
@@ -67,19 +69,21 @@ public class CreateRequestFragment extends Fragment {
 
         Button btnSubmit = (Button) getView().findViewById(R.id.createreq);
         EditText bOrder = (EditText) getView().findViewById(R.id.reqorderdeets);
+        EditText bRestaurant = (EditText) getView().findViewById(R.id.reqrestaurant);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Request request = new Request();
                 Order order = new Order();
+                User user = UserSingleton.getInstance().getUser();
+                request.setUser(user);
                 request.setAccepted(false);
                 request.setDelivered(false);
-                //TODO: connect this to request location selected from dropdown location list
-                request.setDest(locationlist.getSelectedItem().toString());
                 request.setTime(System.currentTimeMillis());
-                //TODO: connect this to request destination selected from dropdown pick up list
                 request.setDest(pickuplist.getSelectedItem().toString());
                 order.setFood(bOrder.getText().toString());
+                order.setLocation(locationlist.getSelectedItem().toString());
+                order.setVendor(bRestaurant.getText().toString());
                 request.setOrder(order);
                 DAO dao = DAO.getInstance();
                 dao.add(request);
