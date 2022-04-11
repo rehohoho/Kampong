@@ -2,9 +2,6 @@ package com.example.kampung;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,9 +9,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.os.Trace;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -23,14 +18,12 @@ import android.widget.Toast;
 import com.example.kampung.controllers.DAO;
 import com.example.kampung.models.User;
 import com.example.kampung.utility.NetworkChangeListener;
-import com.example.kampung.utility.SharedPrefs;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -43,13 +36,10 @@ public class LogInActivity extends AppCompatActivity {
     private CheckBox mCheckBox;
     private User currUser;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-
 
         mTeleHandle = (EditText) findViewById(R.id.telehandle);
         mUsername=(EditText) findViewById(R.id.enter_username);
@@ -66,51 +56,20 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String teleHandle = mTeleHandle.getText().toString();
                 String userName = mUsername.getText().toString();
-                //
 
-                // save checkbox preference
+                currUser = new User(userName,teleHandle);
+
+                // edit saved preferences: telehandle, username, checkbox preference
+                mEditor.putString(getString(R.string.userTeleHandle), "");
+                mEditor.putString(getString(R.string.username), "");
                 if (mCheckBox.isChecked()){
-                    // set a checkbox when the application starts
                     mEditor.putString(getString(R.string.checkbox), "True");
-                    mEditor.commit();
-
-                    //DatabaseReference dbref=db.getReference("Users");
-                    //DAO.getInstance().add(currUser);
-                    mEditor.putString(getString(R.string.userTeleHandle), teleHandle);
-                    mEditor.commit();
-
-                    // save username
-
-                    mEditor.putString(getString(R.string.username), userName);
-                    mEditor.commit();
-
-
-                    currUser=new User(userName,teleHandle);
-
-                    mEditor.putString("telehandle", teleHandle);
-                    mEditor.putString("username",userName);
-                    mEditor.commit();
-
                 } else {
-                    // set a checkbox when the application starts
                     mEditor.putString(getString(R.string.checkbox), "False");
-                    mEditor.commit();
-
-                    // save tele handle
-                    mEditor.putString(getString(R.string.userTeleHandle), "");
-                    mEditor.commit();
-
-                    // save username
-                    mEditor.putString(getString(R.string.username), "");
-                    mEditor.commit();
-
-                    currUser=new User(userName,teleHandle);
-
-
-
                 }
+                mEditor.commit();
 
-                DatabaseReference dbref=db.getReference("User");
+                DatabaseReference dbref = db.getReference("User");
 
                 dbref.orderByChild("telegramHandle")
                         .equalTo(teleHandle)
@@ -133,20 +92,15 @@ public class LogInActivity extends AppCompatActivity {
                                     Toast.makeText(LogInActivity.this, "user found", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
                                     startActivity(intent);
-
                                 }
-
-
-
-
-
                             }
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
 
                             }
-                        });
+                        }
+                    );
             }
         });
     }
