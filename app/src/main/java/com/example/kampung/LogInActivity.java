@@ -59,15 +59,55 @@ public class LogInActivity extends AppCompatActivity {
 
                 currUser = new User(userName,teleHandle);
 
-                // edit saved preferences: telehandle, username, checkbox preference
-                mEditor.putString(getString(R.string.userTeleHandle), "");
-                mEditor.putString(getString(R.string.username), "");
                 if (mCheckBox.isChecked()){
+                    // set a checkbox when the application starts
                     mEditor.putString(getString(R.string.checkbox), "True");
+                    mEditor.commit();
+
+                    //DatabaseReference dbref=db.getReference("Users");
+                    //DAO.getInstance().add(currUser);
+                    mEditor.putString(getString(R.string.userTeleHandle), teleHandle);
+                    mEditor.commit();
+
+                    // save username
+
+                    mEditor.putString(getString(R.string.username), userName);
+                    mEditor.commit();
+
+
+                    currUser=new User(userName,teleHandle);
+
+                    mEditor.putString("telehandle", teleHandle);
+                    mEditor.putString("username",userName);
+                    mEditor.commit();
+
                 } else {
+                    // set a checkbox when the application starts
                     mEditor.putString(getString(R.string.checkbox), "False");
+                    mEditor.commit();
+
+                    // save tele handle
+                    mEditor.putString(getString(R.string.userTeleHandle), "");
+                    mEditor.commit();
+
+                    // save username
+                    mEditor.putString(getString(R.string.username), "");
+                    mEditor.commit();
+
+//                    currUser=new User(userName,teleHandle);
+
                 }
-                mEditor.commit();
+
+
+//                // edit saved preferences: telehandle, username, checkbox preference
+//                mEditor.putString(getString(R.string.userTeleHandle), "");
+//                mEditor.putString(getString(R.string.username), "");
+//                if (mCheckBox.isChecked()){
+//                    mEditor.putString(getString(R.string.checkbox), "True");
+//                } else {
+//                    mEditor.putString(getString(R.string.checkbox), "False");
+//                }
+//                mEditor.commit();
 
                 DatabaseReference dbref = db.getReference("User");
 
