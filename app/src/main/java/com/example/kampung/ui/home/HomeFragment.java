@@ -14,17 +14,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.kampung.controllers.DAO;
 import com.example.kampung.controllers.RequestsViewModel;
 import com.example.kampung.databinding.FragmentHomeBinding;
-import com.example.kampung.models.Request;
 import com.example.kampung.models.RequestAction;
 import com.example.kampung.ui.search.SearchActivity;
 import com.example.kampung.ui.search.SearchRequestAdapter;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 
 public class HomeFragment extends Fragment {
@@ -42,11 +38,9 @@ public class HomeFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.d(TAG, "View Created " + SearchActivity.query);
 
-        Log.d(TAG, "View Created");
-        Log.d(TAG, SearchActivity.query);
         if (SearchActivity.query.length() > 0) {
-
             Log.d(TAG, "SearchActivity show");
             SearchActivity.query = "";
             SearchRequestAdapter requestAdapter = new SearchRequestAdapter(getContext(), requestList);
@@ -54,12 +48,10 @@ public class HomeFragment extends Fragment {
             binding.recyclerBrowsereq.setLayoutManager(new LinearLayoutManager(getContext()));
             requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
             requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), request -> {
-
                 if (request.getRequest().order.location.equals(SearchActivity.query)) {
                     requestList.add(request);
                     requestAdapter.notifyItemInserted(requestList.size() - 1);
                 }
-
             });
         }
         else {
@@ -70,7 +62,6 @@ public class HomeFragment extends Fragment {
 
             requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
             requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), request -> {
-
                 if(!request.getRequest().isDelivered && request.getActionId() == RequestAction.ACTION_ID.ADDED){
                     requestList.add(request);
                     requestAdapter.notifyItemInserted(requestList.size() - 1);
@@ -79,70 +70,6 @@ public class HomeFragment extends Fragment {
         }
 
     }
-
-    /*@Override
-    public void onStart(){
-        super.onStart();
-        FirebaseRecyclerOptions options=new FirebaseRecyclerOptions.Builder<Request>()
-                .setQuery(reqlist,Request.class)
-                .build();
-        FirebaseRecyclerAdapter<Request,viewHolder> adapter =new FirebaseRecyclerAdapter<Request,viewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull viewHolder holder, int position, @NonNull Request model) {
-
-
-                String reqid=getRef(position).getKey();
-                reqlist.child(reqid).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                        String location= snapshot.child("order").child("location").getValue().toString();
-                        String vendor= snapshot.child("order").child("vendor").getValue().toString();
-                        holder.reqlocation.setText(location);
-                        holder.reqrestaurant.setText(vendor);
-
-                        holder.setItemClickListener(new itemClickListener() {
-                            @Override
-                            public void onClick(View view, int position, boolean islongpress) {
-                                Intent intent= new Intent(getActivity(), display_details.class);
-                                startActivity(intent);
-
-
-
-                            }
-                        });
-
-
-                    }
-
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-
-                    }
-                });
-
-            }
-
-            @NonNull
-            @Override
-            public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_home_request_cardview,parent,false);
-                viewHolder viewHolder=new viewHolder(view);
-                return viewHolder;
-            }
-        };
-
-        recyclerView.setAdapter(adapter);
-        adapter.startListening();
-
-
-    }
-
-
-*/
-
 
     @Override
     public void onDestroyView() {
