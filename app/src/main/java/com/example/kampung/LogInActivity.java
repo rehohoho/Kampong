@@ -29,9 +29,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LogInActivity extends AppCompatActivity {
 
-    private final String PREF_NAME = "com.example.kampung";
-    private final String ORDER_KEY = "telegramHandle";
-
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
 
@@ -73,7 +70,7 @@ public class LogInActivity extends AppCompatActivity {
         mUsername=(EditText) findViewById(R.id.enter_username);
         btnLogin = (ImageButton) findViewById(R.id.login);
         mCheckBox = (CheckBox) findViewById(R.id.checkbox);
-        mPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        mPreferences = getSharedPreferences(getString(R.string.pref_name), Context.MODE_PRIVATE);
         mEditor = mPreferences.edit();
 
         checkSharePreferences();
@@ -103,7 +100,7 @@ public class LogInActivity extends AppCompatActivity {
                 }
 
                 DatabaseReference userDb = FirebaseDatabase.getInstance().getReference(User.class.getSimpleName());
-                userDb.orderByChild(ORDER_KEY).equalTo(teleHandle).addListenerForSingleValueEvent(queryListener);
+                userDb.orderByChild("telegramHandle").equalTo(teleHandle).addListenerForSingleValueEvent(queryListener);
             }
         });
     }

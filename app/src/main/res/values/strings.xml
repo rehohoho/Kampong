@@ -8,11 +8,6 @@
     <string name="main_order_button_text">Let\'s Dabao</string>
     <string name="main_search_button_text">Search orders!</string>
 
-    <string name="second_fragment_label">Let\'s Dabao!</string>
-    <string name="previous">Go back</string>
-
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="dabao_dabao_button_text">Dabao!</string>
     <string name="title_activity_bottom_nav">Bottom_Nav_Activity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -40,5 +35,6 @@
     <string name="new_request">New Request</string>
 
     <string name="is_delivered">Order has been delivered</string>
+    <string name="pref_name">com.example.kampung</string>
 
 </resources>

@@ -22,7 +22,7 @@ import com.example.kampung.controllers.UserViewModel;
 import com.example.kampung.databinding.FragmentHomeRequestDetailsBinding;
 import com.example.kampung.models.Request;
 import com.example.kampung.models.User;
-import com.google.firebase.database.FirebaseDatabase;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,15 +38,8 @@ public class HomeRequestDetails extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     Request req;
-    User currUser;
     SharedPreferences mPreferences;
-    private FirebaseDatabase db=FirebaseDatabase.getInstance();
-    String reqkey;
-
 
     public HomeRequestDetails() {
         // Required empty public constructor
@@ -73,12 +66,12 @@ public class HomeRequestDetails extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle bundle=getArguments();
+        Bundle bundle = getArguments();
         if (getArguments() != null) {
             req = bundle.getParcelable("request");
         }
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        mPreferences = getContext().getSharedPreferences("com.example.kampung", Context.MODE_PRIVATE);
+        mPreferences = getContext().getSharedPreferences(getString(R.string.pref_name), Context.MODE_PRIVATE);
     }
 
     @Override
@@ -117,34 +110,23 @@ public class HomeRequestDetails extends Fragment {
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity_bottom_nav);
                     navController.navigate(R.id.action_home_req_details_to_home);
-                }
-                else{
+                } else {
                     Toast.makeText(getContext(),"cannot accept own request",Toast.LENGTH_SHORT).show();
                 }
-
-            }});
-
-
-
-
-
-
-
-
+            }
+        });
 
         return binding.getRoot();
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.onDestroyView();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            this.onDestroyView();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public void onDestroyView() {

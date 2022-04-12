@@ -34,7 +34,7 @@ public class HomeRequestAdapter extends RecyclerView.Adapter<HomeRequestAdapter.
     }
 
     static class RequestViewHolder extends RecyclerView.ViewHolder{
-        TextView locationTV, vendorTV, timeTV, destTV, teleHandleTV, userTV;
+        TextView locationTV, vendorTV, timeTV;
 
         public RequestViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,9 +64,8 @@ public class HomeRequestAdapter extends RecyclerView.Adapter<HomeRequestAdapter.
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity_bottom_nav);
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("request",req);
-                navController.navigate(R.id.action_navigation_home_to_home_req_details_Fragment,bundle);
-                //NavHostFragment.findNavController(HomeFragment).navigate(R.id.action_navigation_home_to_home_req_details_Fragment);
+                bundle.putParcelable("request", req);
+                navController.navigate(R.id.action_navigation_home_to_home_req_details_Fragment, bundle);
             }
         });
     }
