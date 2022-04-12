@@ -96,7 +96,7 @@ public class CreateRequestFragment extends Fragment {
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity_bottom_nav);
                 navController.navigate(R.id.action_navigation_dashboard_to_navigation_home);
-                DAO.getInstance().add(request, request.uniqueID);
+                DAO.getInstance().add(request);
             }
         });
     }

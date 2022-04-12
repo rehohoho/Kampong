@@ -27,6 +27,7 @@ public class RequestsViewModel extends ViewModel {
         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
             Log.d(TAG, "onChildAdded: " + snapshot);
             Request req = snapshot.getValue(Request.class);
+            req.uniqueID = snapshot.getKey();
             requestData.setValue(new RequestAction(req, RequestAction.ACTION_ID.ADDED));
         }
 

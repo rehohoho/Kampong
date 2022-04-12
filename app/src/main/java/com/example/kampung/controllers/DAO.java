@@ -36,25 +36,16 @@ public class DAO {
         return dao;
     }
 
-    public Task<Void> add(Object value) {
+    public String add(Object value) {
         DatabaseReference dbRef = db.getReference(value.getClass().getSimpleName());
         String key = dbRef.push().getKey();
         Map<String, Object> updates = new HashMap<>();
         updates.put(key, value);
-        return dbRef.updateChildren(updates);
+        dbRef.updateChildren(updates);
+        return key;
     }
 
-    public Task<Void> add(Object value, Integer key) {
-        DatabaseReference dbRef = db.getReference(value.getClass().getSimpleName());
-        dbRef.push().getKey();
-        String keyStr = key.toString();
-        Map<String, Object> updates = new HashMap<>();
-        updates.put(keyStr, value);
-        return dbRef.updateChildren(updates);
-
-    }
-
-    public Task<Void> update(Object value, Integer key) {
+    public Task<Void> update(Object value, String key) {
         DatabaseReference dbRef = db.getReference(value.getClass().getSimpleName());
         String keyStr = key.toString();
         Map<String, Object> updates = new HashMap<>();

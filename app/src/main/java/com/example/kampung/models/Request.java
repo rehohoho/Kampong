@@ -8,7 +8,6 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 @IgnoreExtraProperties // ignore class fields not mapped to properties
 public class Request implements Parcelable {
@@ -21,7 +20,7 @@ public class Request implements Parcelable {
     public Boolean isAccepted;
     public User acceptedBy;
     public Boolean isDelivered;
-    public Integer uniqueID;
+    public String uniqueID;
 
     public Request() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
@@ -38,7 +37,6 @@ public class Request implements Parcelable {
         this.isAccepted = isAccepted;
         this.isDelivered = isDelivered;
         this.acceptedBy = acceptedBy;
-        this.uniqueID = new Random().nextInt(1000);
     }
 
     protected Request(Parcel in) {
