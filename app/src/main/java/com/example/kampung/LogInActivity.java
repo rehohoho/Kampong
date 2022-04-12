@@ -147,8 +147,8 @@ public class LogInActivity extends AppCompatActivity {
 
     private void checkSharePreferences() {
         String checkbox = mPreferences.getString(getString(R.string.checkbox), "False");
-        String userTeleHandle = mPreferences.getString(getString(R.string.userTeleHandle), "");
-        String username = mPreferences.getString(getString(R.string.username),"");
+        String userTeleHandle = mPreferences.getString("telehandle", "");
+        String username = mPreferences.getString("username","");
 
         mTeleHandle.setText(userTeleHandle);
         mUsername.setText(username);
