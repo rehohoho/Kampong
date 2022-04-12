@@ -22,10 +22,11 @@ import com.google.firebase.database.ValueEventListener;
 public class UserViewModel extends ViewModel {
 
     private final String TAG = "UserViewModel";
-    private MutableLiveData<User> userData;
+    private final UserLiveData userData = UserLiveData.getInstance();
 
     private ValueEventListener mUserListener;
     private DAO dao;
+    private String key;
 
     private final ValueEventListener userListener = new ValueEventListener() {
         @Override
@@ -38,19 +39,17 @@ public class UserViewModel extends ViewModel {
         public void onCancelled(@NonNull DatabaseError error) {
             Log.w(TAG, "onCancelled: ", error.toException());
         }
-
-        public Boolean checkIfExists(DataSnapshot snapshot) {
-            return snapshot.exists();
-        }
     };
 
-    public LiveData<User> getUser(DAO dao) {
-        if (userData == null) {
-            this.dao = dao;
-            dao.addUserListener(userListener);
-            mUserListener = userListener;
-            userData = new MutableLiveData<>();
-        }
+    public LiveData<User> getUser(DAO dao, String key) {
+        this.dao = dao;
+        this.key = key;
+        dao.addUserListener(userListener, key);
+        mUserListener = userListener;
+        return userData;
+    }
+
+    public LiveData<User> getUser() {
         return userData;
     }
 
@@ -66,7 +65,7 @@ public class UserViewModel extends ViewModel {
     protected void onCleared() {
         super.onCleared();
         if (mUserListener != null) {
-            dao.removeUserListener(userListener);
+            dao.removeUserListener(userListener, key);
             mUserListener = null;
         }
     }

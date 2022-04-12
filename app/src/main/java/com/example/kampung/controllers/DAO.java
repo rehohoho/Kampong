@@ -66,12 +66,12 @@ public class DAO {
         requestDb.removeEventListener(listener);
     }
 
-    public void addUserListener(ValueEventListener listener) {
-        userDb.addValueEventListener(listener);
+    public void addUserListener(ValueEventListener listener, String key) {
+        userDb.child(key).addValueEventListener(listener);
     }
 
-    public void removeUserListener(ValueEventListener listener) {
-        userDb.removeEventListener(listener);
+    public void removeUserListener(ValueEventListener listener, String key) {
+        userDb.child(key).removeEventListener(listener);
     }
 
 }
