@@ -125,7 +125,7 @@ public class RequestDetailFragment extends Fragment {
             Log.d("TAG", "Request not their");
         } else{
             orderDetailTextView.setText(mRequest.order.food);
-            requestLocationTextView.setText(mRequest.dest);
+            requestLocationTextView.setText(mRequest.order.location);
             vendorTextView.setText(mRequest.order.vendor);
             userTextView.setText("posted by: " + mRequest.user.username);
             teleHandleTextView.setText("@" + mRequest.user.telegramHandle);

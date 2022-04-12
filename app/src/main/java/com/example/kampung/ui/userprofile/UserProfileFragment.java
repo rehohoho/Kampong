@@ -33,6 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class UserProfileFragment extends Fragment {
@@ -101,7 +102,7 @@ public class UserProfileFragment extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Request req = snapshot.getValue(Request.class);
                 String reqKey = snapshot.getKey();
-                if (req.user.username.equals(userName) && req.user.telegramHandle.equals(userTeleHandle)){
+                if (req.user.username.equals(userName.toLowerCase(Locale.ROOT)) && req.user.telegramHandle.equals(userTeleHandle.toLowerCase(Locale.ROOT))){
                     myRequests.add(req);
                     myRequestKeys.add(reqKey);
                 }
