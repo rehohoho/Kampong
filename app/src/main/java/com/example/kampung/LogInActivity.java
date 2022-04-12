@@ -2,6 +2,7 @@ package com.example.kampung;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.kampung.controllers.DAO;
+import com.example.kampung.controllers.UserViewModel;
 import com.example.kampung.models.User;
 import com.example.kampung.utility.NetworkChangeListener;
 import com.google.firebase.database.DataSnapshot;
@@ -37,22 +39,21 @@ public class LogInActivity extends AppCompatActivity {
     private ImageButton btnLogin;
     private CheckBox mCheckBox;
     private User currUser;
+    private UserViewModel userViewModel;
 
     private final ValueEventListener queryListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            User reqkey = null;
+            String reqkey = null;
             for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                reqkey = childSnapshot.getValue(User.class);
+                reqkey = childSnapshot.getKey();
             }
-            if(reqkey == null){
-                UserSingleton.getInstance(currUser);
-                DAO.getInstance().add(currUser);
-            }
-            else{
-                UserSingleton.getInstance(reqkey);
+            if (reqkey == null) {
+                reqkey = DAO.getInstance().add(currUser);
+            } else {
                 Toast.makeText(LogInActivity.this, "user found", Toast.LENGTH_SHORT).show();
             }
+            userViewModel.getUser(DAO.getInstance(), reqkey);
             Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
             startActivity(intent);
         }
@@ -77,6 +78,7 @@ public class LogInActivity extends AppCompatActivity {
 
         checkSharePreferences();
         mCheckBox.setChecked(true);
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

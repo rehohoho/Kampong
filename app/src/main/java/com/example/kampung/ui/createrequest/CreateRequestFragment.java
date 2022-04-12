@@ -16,19 +16,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.kampung.R;
-import com.example.kampung.UserSingleton;
 import com.example.kampung.controllers.DAO;
+import com.example.kampung.controllers.UserViewModel;
 import com.example.kampung.models.Order;
 import com.example.kampung.models.Request;
 import com.example.kampung.models.User;
 
+
 public class CreateRequestFragment extends Fragment {
     private Spinner locationlist, pickuplist, requestduelist;
     private SharedPreferences mPreferences;
+    private UserViewModel userViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -56,7 +59,7 @@ public class CreateRequestFragment extends Fragment {
                 requestdues);
         requestduelist.setAdapter(adapter2);
 
-
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         return reqView;
     }
 
@@ -75,7 +78,7 @@ public class CreateRequestFragment extends Fragment {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User user = UserSingleton.getInstance().getUser();
+                User user = userViewModel.getUser().getValue();
                 Order order = new Order(
                     locationlist.getSelectedItem().toString(),
                     bRestaurant.getText().toString(),

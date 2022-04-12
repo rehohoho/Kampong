@@ -12,20 +12,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.kampung.R;
-import com.example.kampung.UserSingleton;
 import com.example.kampung.controllers.DAO;
+import com.example.kampung.controllers.UserViewModel;
 import com.example.kampung.databinding.FragmentHomeRequestDetailsBinding;
 import com.example.kampung.models.Request;
 import com.example.kampung.models.User;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
  */
 public class HomeRequestDetails extends Fragment {
     private FragmentHomeRequestDetailsBinding binding;
+    private UserViewModel userViewModel;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -79,6 +77,7 @@ public class HomeRequestDetails extends Fragment {
         if (getArguments() != null) {
             req = bundle.getParcelable("request");
         }
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         mPreferences = getContext().getSharedPreferences("com.example.kampung", Context.MODE_PRIVATE);
     }
 
@@ -108,11 +107,11 @@ public class HomeRequestDetails extends Fragment {
         binding.dabaoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User curruser=UserSingleton.getInstance().getUser();
+                User curruser = userViewModel.getUser().getValue();
                 if(!curruser.telegramHandle.equals(req.user.telegramHandle)){
                     Toast.makeText(getContext(),req.user.telegramHandle+"+"+curruser.telegramHandle,Toast.LENGTH_SHORT).show();
                     req.isAccepted=true;
-                    req.acceptedBy=UserSingleton.getInstance().getUser();
+                    req.acceptedBy = curruser;
                     DAO dao = DAO.getInstance();
                     dao.update(req, req.uniqueID);
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();

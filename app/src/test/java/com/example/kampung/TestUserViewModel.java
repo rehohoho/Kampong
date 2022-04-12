@@ -39,7 +39,7 @@ public class TestUserViewModel {
         snapShot = mock(DataSnapshot.class);
 
         usersViewModel = new UserViewModel();
-        liveUser = usersViewModel.getUser(dao);
+        liveUser = usersViewModel.getUser(dao, "");
         listener = usersViewModel.getUserListener();
     }
 
