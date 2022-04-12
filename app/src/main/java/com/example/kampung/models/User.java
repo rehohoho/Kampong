@@ -24,4 +24,12 @@ public class User {
         this.number = number;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", telegramHandle='" + telegramHandle + '\'' +
+                ", number=" + number +
+                '}';
+    }
 }
