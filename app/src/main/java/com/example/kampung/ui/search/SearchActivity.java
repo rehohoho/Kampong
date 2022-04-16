@@ -34,8 +34,6 @@ public class SearchActivity extends AppCompatActivity {
 
     private static final String TAG = "SearchActivity";
     private ArrayAdapter adapter;
-    public static ArrayList<Request> display = new ArrayList<>();
-    public static boolean show = false;
     public static String query = "";
 
 
@@ -90,21 +88,10 @@ public class SearchActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                display.clear();
-                Toast.makeText(SearchActivity.this, "Displaying " + locations.get(position) + " queries", Toast.LENGTH_SHORT).show();
-//                Log.d(TAG, locations.get(position));
-                for (Request request : list) {
-                    if (request.order.location.equals(locations.get(position))) {
-//                        Log.d("SearchActQueryReceive", request.toString());
-                        display.add(request);
-                    }
-                }
-                show = true;
                 query = locations.get(position);
+//                Log.d(TAG, query)
                 Intent myIntent = new Intent(SearchActivity.this, BottomNavActivity.class);
                 SearchActivity.this.startActivity(myIntent);
-
-//                Log.d(TAG, display.toString());
             }
         });
 

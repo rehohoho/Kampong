@@ -5,12 +5,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.kampung.R;
 import com.example.kampung.controllers.DAO;
 import com.example.kampung.controllers.RequestsViewModel;
 import com.example.kampung.databinding.FragmentHomeBinding;
@@ -38,11 +41,10 @@ public class HomeFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.d(TAG, "View Created " + SearchActivity.query);
+        TextView text = ((TextView) view.findViewById(R.id.text_request));
 
         if (SearchActivity.query.length() > 0) {
-            Log.d(TAG, "SearchActivity show");
-            SearchActivity.query = "";
+            Log.d(TAG, "View Created " + SearchActivity.query + " queries");
             SearchRequestAdapter requestAdapter = new SearchRequestAdapter(getContext(), requestList);
             binding.recyclerBrowsereq.setAdapter(requestAdapter);
             binding.recyclerBrowsereq.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -52,6 +54,18 @@ public class HomeFragment extends Fragment {
                     requestList.add(request);
                     requestAdapter.notifyItemInserted(requestList.size() - 1);
                 }
+                // DISPLAY TOASTS FOR SUCCESSFUL / UNSUCCESSFUL SEARCHES
+                if (requestList.isEmpty()) {
+                    text.setText("No requests were found.");
+
+                    Toast.makeText(getActivity(), "No requests with " + SearchActivity.query + " was found.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    text.setText("Filter-" + SearchActivity.query);
+                    Toast.makeText(getActivity(), "Displaying " + SearchActivity.query + " queries", Toast.LENGTH_SHORT).show();
+                }
+                // RESET QUERY FROM SEARCHACTIVITY
+                SearchActivity.query = "";
             });
         }
         else {
