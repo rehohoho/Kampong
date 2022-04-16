@@ -4,7 +4,7 @@
 
     <!-- Strings used for fragments for navigation -->
     <string name="main_label">Home</string>
-    <string name="main_text">Welcome to Kampong!</string>
+    <string name="main_text">Welcome to Kampung!</string>
     <string name="main_order_button_text">Let\'s Dabao</string>
     <string name="main_search_button_text">Search orders!</string>
 

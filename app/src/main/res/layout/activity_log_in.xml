@@ -20,8 +20,8 @@
         android:id="@+id/bg_fish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@id/text_Kampong"
-        android:layout_alignBottom="@id/text_Kampong"
+        android:layout_alignEnd="@id/text_Kampung"
+        android:layout_alignBottom="@id/text_Kampung"
         android:layout_marginEnd="-20dp"
         android:src="@drawable/bg_fishes" />
 
@@ -29,7 +29,7 @@
         android:id="@+id/text_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/text_Kampong"
+        android:layout_above="@id/text_Kampung"
         android:layout_centerInParent="true"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/pt_serif_bold"
@@ -38,14 +38,14 @@
         android:textSize="36dp" />
 
     <TextView
-        android:id="@+id/text_Kampong"
+        android:id="@+id/text_Kampung"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/enter_username"
         android:layout_centerInParent="true"
         android:layout_marginBottom="50dp"
         android:fontFamily="@font/pt_serif_bold"
-        android:text="to Kampong."
+        android:text="to Kampung."
         android:textColor="@color/black"
         android:textSize="36dp" />
 
