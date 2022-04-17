@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class RequestDetailFragment extends Fragment {
     private Request mRequest;
     private Button confirmButton;
     private String requestKey;
+    private ImageView locationImg;
 
     private TextView orderDetailTextView;
     private TextView requestLocationTextView;
@@ -118,6 +120,7 @@ public class RequestDetailFragment extends Fragment {
         destTextView = view.findViewById(R.id.reqdetails_dest);
         acceptedByTextView = view.findViewById(R.id.acceptedUser);
         timeTextView = view.findViewById(R.id.reqdetails_time);
+        locationImg = view.findViewById(R.id.location_img);
     }
 
     private void setViews(View view) {
@@ -131,10 +134,24 @@ public class RequestDetailFragment extends Fragment {
             teleHandleTextView.setText("@" + mRequest.user.telegramHandle);
             destTextView.setText(mRequest.dest);
             if (mRequest.isAccepted)
-                acceptedByTextView.setText(mRequest.acceptedBy.username);
+                acceptedByTextView.setText("@" + mRequest.acceptedBy.telegramHandle);
             else {
                 TextView t = view.findViewById(R.id.text_accepted);
                 t.setText("No one accept");
+            }
+
+            if (mRequest.order.location.equals("SUTD Canteen")) {
+                locationImg.setImageResource(R.drawable.location_sutd);
+            } else if (mRequest.order.location.equals("Eastpoint Mall")) {
+                locationImg.setImageResource(R.drawable.location_eastpoint);
+            } else if (mRequest.order.location.equals("Changi City Point")) {
+                locationImg.setImageResource(R.drawable.location_ccp);
+            }else if (mRequest.order.location.equals("Bedok Point")) {
+                locationImg.setImageResource(R.drawable.location_bedokpoint);
+            }else if (mRequest.order.location.equals("Jewel Changi Airport")) {
+                locationImg.setImageResource(R.drawable.location_jewel);
+            } else {
+                locationImg.setImageResource(R.drawable.location_simpang);
             }
 
             timeTextView.setText(mRequest.getTimeInString());
@@ -145,26 +162,20 @@ public class RequestDetailFragment extends Fragment {
 
     private void setConfirmButton(View view){
         confirmButton = view.findViewById(R.id.delivered_button);
-        if (mRequest.isDelivered) {
-            confirmButton.setEnabled(false);
-            confirmButton.setText(R.string.is_delivered);
-
-        }else {
-            confirmButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    DAO dao = DAO.getInstance();
-                    dao.remove("Request", requestKey);
-
-
-                    Toast.makeText(getContext(), "Delivery confirmed", Toast.LENGTH_SHORT).show();
-                    Navigation.findNavController(view).navigate(R.id.action_requestDetailFragment_to_navigation_user_profile);
-//                    reqNodRef.child(requestKey).child("isDelivered").setValue(true);
-//                    Toast.makeText(getContext(), "Delivery confirmed", Toast.LENGTH_SHORT).show();
-//                    Navigation.findNavController(view).navigate(R.id.action_requestDetailFragment_to_navigation_user_profile);
-                }
-            });
+        if (!mRequest.isAccepted) {
+            confirmButton.setText("Remove Request");
+        } else {
+            confirmButton.setText("Delivered");
         }
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DAO dao = DAO.getInstance();
+                dao.remove("Request", requestKey);
+
+                Toast.makeText(getContext(), "Delivery confirmed", Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(view).navigate(R.id.action_requestDetailFragment_to_navigation_user_profile);
+            }
+        });
     }
 }
