@@ -53,12 +53,11 @@ public class SearchActivity extends AppCompatActivity {
         // ARRAYLIST OF LOCATIONS
         ArrayList<String> locations = new ArrayList<>();
         locations.add("Changi City Point");
-        locations.add("Senat's Kitchen");
         locations.add("SUTD Canteen");
-        locations.add("Simei");
-        locations.add("Timbre+");
         locations.add("Bedok Point");
         locations.add("Jewel Changi Airport");
+        locations.add("Simpang");
+        locations.add("Eastpoint Mall");
 
         final ArrayList<Request> list = new ArrayList<>();
 

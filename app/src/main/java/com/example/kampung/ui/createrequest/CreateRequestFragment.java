@@ -39,7 +39,7 @@ public class CreateRequestFragment extends Fragment {
 
 
         // for the options in each of the drop downs (not sure if thrs a btr way haha)
-        String [] locations = {"SUTD Canteen", "Eastpoint Mall", "Changi City Point", "Simpang"};
+        String [] locations = {"SUTD Canteen", "Eastpoint Mall", "Changi City Point", "Simpang", "Jewel Changi Airport", "Bedok Point"};
         String [] pickuppoints = {"Blk 59 Hostel Lobby", "Blk 57 Hostel Lobby", "Building 1 Pickup Point"};
         String [] requestdues = {"12pm", "3pm", "6pm", "9pm"};
 
