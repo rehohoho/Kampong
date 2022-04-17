@@ -84,20 +84,19 @@ public class UserProfileFragment extends Fragment {
         requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
         requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), requestAction -> {
             Request req = requestAction.getRequest();
-            if (req.user.username.equals(userName.toLowerCase(Locale.ROOT)) &&
-                req.user.telegramHandle.equals(userTeleHandle.toLowerCase(Locale.ROOT))
-            ) {
+            if (req.user.telegramHandle.equals(userTeleHandle) ) {
                 myRequests.add(req);
                 myRequestKeys.add(req.uniqueID);
                 requestAdapter.notifyItemInserted(myRequests.size() - 1);
             }
+            if (req.acceptedBy != null){
+                if (req.acceptedBy.telegramHandle.equals(userTeleHandle)){
+                    myRequests.add(req);
+                    myRequestKeys.add(req.uniqueID);
+                    requestAdapter.notifyItemInserted(myRequests.size() - 1);
+                }
+            }
         });
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        myRequests.clear();
     }
 
     private void setUserProfile(View view){
