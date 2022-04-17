@@ -88,13 +88,17 @@ public class HomeRequestDetails extends Fragment {
         binding.reqdetailsVendor.setText(req.order.vendor);
         binding.reqdetailsUser.setText("Posted by:"+req.user.username);
         if (req.order.location.equals("SUTD Canteen")) {
-            binding.locationImg.setImageResource(R.drawable.sutd);
+            binding.locationImg.setImageResource(R.drawable.location_sutd);
         } else if (req.order.location.equals("Eastpoint Mall")) {
-            binding.locationImg.setImageResource(R.drawable.eastpoint);
+            binding.locationImg.setImageResource(R.drawable.location_eastpoint);
         } else if (req.order.location.equals("Changi City Point")) {
-            binding.locationImg.setImageResource(R.drawable.ccp);
+            binding.locationImg.setImageResource(R.drawable.location_ccp);
+        }else if (req.order.location.equals("Bedok Point")) {
+            binding.locationImg.setImageResource(R.drawable.location_bedokpoint);
+        }else if (req.order.location.equals("Jewel Changi Airport")) {
+            binding.locationImg.setImageResource(R.drawable.location_jewel);
         } else {
-            binding.locationImg.setImageResource(R.drawable.simpang);
+            binding.locationImg.setImageResource(R.drawable.location_simpang);
         }
 
         binding.dabaoButton.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +106,7 @@ public class HomeRequestDetails extends Fragment {
             public void onClick(View view) {
                 User curruser = userViewModel.getUser().getValue();
                 if(!curruser.telegramHandle.equals(req.user.telegramHandle)){
-                    Toast.makeText(getContext(),req.user.telegramHandle+"+"+curruser.telegramHandle,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"Request accepted",Toast.LENGTH_SHORT).show();
                     req.isAccepted=true;
                     req.acceptedBy = curruser;
                     DAO dao = DAO.getInstance();
@@ -111,7 +115,7 @@ public class HomeRequestDetails extends Fragment {
                     NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity_bottom_nav);
                     navController.navigate(R.id.action_home_req_details_to_home);
                 } else {
-                    Toast.makeText(getContext(),"cannot accept own request",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"Cannot accept own request",Toast.LENGTH_SHORT).show();
                 }
             }
         });
