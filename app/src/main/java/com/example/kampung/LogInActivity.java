@@ -47,8 +47,6 @@ public class LogInActivity extends AppCompatActivity {
             }
             if (reqkey == null) {
                 reqkey = DAO.getInstance().add(currUser);
-            } else {
-                Toast.makeText(LogInActivity.this, "user found", Toast.LENGTH_SHORT).show();
             }
             userViewModel.getUser(DAO.getInstance(), reqkey);
             Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
