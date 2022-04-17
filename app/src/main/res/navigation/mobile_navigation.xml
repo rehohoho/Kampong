@@ -14,6 +14,10 @@
             android:id="@+id/action_navigation_home_to_home_req_details_Fragment"
             app:destination="@id/home_req_details" />
 
+        <action
+            android:id="@+id/action_navigation_home_to_search_fragment"
+            app:destination="@id/search_fragment" />
+
     </fragment>
 
     <fragment
@@ -27,8 +31,15 @@
             app:destination="@id/navigation_home" />
     </fragment>
 
-
-
+    <activity
+        android:id="@+id/search_fragment"
+        android:name="com.example.kampung.ui.search.SearchActivity"
+        android:label="fragment_search"
+        tools:layout="@layout/activity_search" >
+        <argument
+            android:name="requestKey"
+            app:argType="string" />
+    </activity>
 
     <fragment
         android:id="@+id/navigation_dashboard"
