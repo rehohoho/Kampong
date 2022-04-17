@@ -52,13 +52,14 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         String searchString = SearchActivity.query;
 
+        HomeRequestAdapter requestAdapter = new HomeRequestAdapter(getContext(), requestList);
+        binding.recyclerBrowsereq.setAdapter(requestAdapter);
+        binding.recyclerBrowsereq.setLayoutManager(new LinearLayoutManager(getContext()));
+        requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
+
         if (searchString.length() > 0) {
             Log.d(TAG, "View Created " + searchString + " queries");
             binding.textRequest.setText("Filtered Result");
-            HomeRequestAdapter requestAdapter = new HomeRequestAdapter(getContext(), requestList);
-            binding.recyclerBrowsereq.setAdapter(requestAdapter);
-            binding.recyclerBrowsereq.setLayoutManager(new LinearLayoutManager(getContext()));
-            requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
             requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), request -> {
                 if (request.getRequest().order.location.equals(searchString) && !request.getRequest().isAccepted && request.getActionId() == RequestAction.ACTION_ID.ADDED) {
                     requestList.add(request);
@@ -80,11 +81,6 @@ public class HomeFragment extends Fragment {
         }
         else {
             Log.d(TAG, "No Search");
-            HomeRequestAdapter requestAdapter = new HomeRequestAdapter(getContext(), requestList);
-            binding.recyclerBrowsereq.setAdapter(requestAdapter);
-            binding.recyclerBrowsereq.setLayoutManager(new LinearLayoutManager(getContext()));
-
-            requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
             requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), request -> {
                 if(!request.getRequest().isAccepted && request.getActionId() == RequestAction.ACTION_ID.ADDED){
                     requestList.add(request);

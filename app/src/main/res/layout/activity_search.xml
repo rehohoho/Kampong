@@ -7,16 +7,45 @@
     android:layout_height="match_parent"
     tools:context=".ui.search.SearchActivity">
 
+    <ImageView
+        android:id="@+id/bg_tree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="-25dp"
+        android:src="@drawable/bg_tree" />
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:fontFamily="@font/pt_serif_bold"
+        android:text="Select location to filter"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="26sp" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:id="@+id/searchFilter"
-        android:hint="Filter..."
-        android:textColor="@color/black"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_below="@id/titleText"
+        android:hint="Search location..."
+        style="@style/editTextStyle"
+        android:background="@drawable/button_shape"
+        android:textColor="@color/black" />
 
     <ListView
         android:id="@+id/theList"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/searchFilter" />
