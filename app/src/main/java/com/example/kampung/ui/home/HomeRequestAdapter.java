@@ -26,10 +26,12 @@ public class HomeRequestAdapter extends RecyclerView.Adapter<HomeRequestAdapter.
     private final String TAG = "HomeRequestAdapter";
     private final LayoutInflater mInflater;
     private ArrayList<Request> requests;
+    private int resId;
 
-    public HomeRequestAdapter(Context context, ArrayList<Request> requests) {
+    public HomeRequestAdapter(Context context, ArrayList<Request> requests, int resId) {
         mInflater = LayoutInflater.from(context);
         this.requests = requests;
+        this.resId = resId;
     }
 
     static class RequestViewHolder extends RecyclerView.ViewHolder{
@@ -64,7 +66,7 @@ public class HomeRequestAdapter extends RecyclerView.Adapter<HomeRequestAdapter.
                 NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity_bottom_nav);
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("request", req);
-                navController.navigate(R.id.action_navigation_home_to_home_req_details_Fragment, bundle);
+                navController.navigate(resId, bundle);
             }
         });
     }

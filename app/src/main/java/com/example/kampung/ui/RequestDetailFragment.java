@@ -62,6 +62,10 @@ public class RequestDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            mRequest = bundle.getParcelable("request");
+        }
     }
 
     @Override
@@ -75,35 +79,36 @@ public class RequestDetailFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         bindViews(view);
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        setDatabase();
-        Looper looper = Looper.getMainLooper();
-        Handler handler = new Handler(looper);
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                requestKey = getArguments().getString("requestKey");
-                Log.i("requestKey is",requestKey);
-                reqNodRef.child(requestKey).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Request request = snapshot.getValue(Request.class);
-                        mRequest = request;
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                setViews(view);
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-            }
-        });
+        setViews(view);
+//        ExecutorService executor = Executors.newSingleThreadExecutor();
+//        setDatabase();
+//        Looper looper = Looper.getMainLooper();
+//        Handler handler = new Handler(looper);
+//        executor.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                requestKey = getArguments().getString("requestKey");
+//                Log.i("requestKey is",requestKey);
+//                reqNodRef.child(requestKey).addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        Request request = snapshot.getValue(Request.class);
+//                        mRequest = request;
+//                        handler.post(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                setViews(view);
+//                            }
+//                        });
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//            }
+//        });
     }
 
     private void setDatabase(){

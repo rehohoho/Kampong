@@ -22,6 +22,7 @@ import com.example.kampung.R;
 import com.example.kampung.controllers.DAO;
 import com.example.kampung.controllers.RequestsViewModel;
 import com.example.kampung.models.Request;
+import com.example.kampung.ui.home.HomeRequestAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +32,7 @@ public class UserProfileFragment extends Fragment {
 
     private TextView mUserTeleHandleTextView;
     private TextView userNameTextView;
-    private List<Request> myRequests = new ArrayList<>();
-    private List<String> myRequestKeys = new ArrayList<>();
+    private ArrayList<Request> myRequests = new ArrayList<>();
 
     private NavController navController;
     private SharedPreferences mSharedPreferences;
@@ -64,7 +64,7 @@ public class UserProfileFragment extends Fragment {
         navController = NavHostFragment.findNavController(this);
         setUserProfile(view);
 
-        RequestAdapter requestAdapter = new RequestAdapter(getContext(), myRequests, navController, myRequestKeys);
+        HomeRequestAdapter requestAdapter = new HomeRequestAdapter(getContext(), myRequests, R.id.action_navigation_user_profile_to_requestDetailFragment);
         RecyclerView myRequestsRecyclerView = view.findViewById(R.id.my_requests);
         myRequestsRecyclerView.setAdapter(requestAdapter);
         myRequestsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -77,7 +77,6 @@ public class UserProfileFragment extends Fragment {
                 (req.acceptedBy != null && req.acceptedBy.telegramHandle.equals(userTeleHandle))
             )) {
                 myRequests.add(req);
-                myRequestKeys.add(req.uniqueID);
                 requestAdapter.notifyItemInserted(myRequests.size() - 1);
             }
         });

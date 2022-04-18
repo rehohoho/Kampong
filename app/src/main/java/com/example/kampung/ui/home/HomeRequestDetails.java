@@ -1,7 +1,5 @@
 package com.example.kampung.ui.home;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -39,7 +37,6 @@ public class HomeRequestDetails extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     Request req;
-    SharedPreferences mPreferences;
 
     public HomeRequestDetails() {
         // Required empty public constructor
@@ -67,11 +64,10 @@ public class HomeRequestDetails extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
-        if (getArguments() != null) {
+        if (bundle != null) {
             req = bundle.getParcelable("request");
         }
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        mPreferences = getContext().getSharedPreferences(getString(R.string.pref_name), Context.MODE_PRIVATE);
     }
 
     @Override
