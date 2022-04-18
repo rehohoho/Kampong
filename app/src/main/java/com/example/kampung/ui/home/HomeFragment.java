@@ -24,6 +24,7 @@ import com.example.kampung.ui.search.SearchActivity;
 
 import java.util.ArrayList;
 
+
 public class HomeFragment extends Fragment {
 
     private final String TAG = "HomeFragment";

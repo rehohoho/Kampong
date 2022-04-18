@@ -39,4 +39,16 @@ public class Order {
         result.put("remarks", remarks);
         return result;
     }
+
+    @Exclude
+    @Override
+    public String toString() {
+        return "Order{" +
+                "location='" + location + '\'' +
+                ", vendor='" + vendor + '\'' +
+                ", food='" + food + '\'' +
+                ", meal=" + meal +
+                ", remarks='" + remarks + '\'' +
+                '}';
+    }
 }

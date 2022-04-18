@@ -15,12 +15,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.kampung.BottomNavActivity;
 import com.example.kampung.R;
 import com.example.kampung.models.Request;
-import com.example.kampung.models.RequestAction;
 import com.example.kampung.utility.NetworkChangeListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,15 +28,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+
 public class SearchActivity extends AppCompatActivity {
 
     private static final String TAG = "SearchActivity";
     private ArrayAdapter adapter;
     public static String query = "";
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +43,8 @@ public class SearchActivity extends AppCompatActivity {
         EditText theFilter = (EditText) findViewById(R.id.searchFilter);
         Log.d(TAG, "onCreate: Started.");
 
-
         query = "";
+
         // ARRAYLIST OF LOCATIONS
         ArrayList<String> locations = new ArrayList<>();
         locations.add("Changi City Point");
@@ -67,10 +62,10 @@ public class SearchActivity extends AppCompatActivity {
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                Log.d(TAG, "Data Changed");
+                Log.d(TAG, "Data Changed");
                 list.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    Log.d(TAG, snapshot.toString());
+                    Log.d(TAG, snapshot.toString());
                     list.add(snapshot.getValue(Request.class));
                 }
                 adapter.notifyDataSetChanged();
@@ -88,12 +83,11 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 query = locations.get(position);
-//                Log.d(TAG, query)
+                Log.d(TAG, query);
                 Intent myIntent = new Intent(SearchActivity.this, BottomNavActivity.class);
                 SearchActivity.this.startActivity(myIntent);
             }
         });
-
 
 
         theFilter.addTextChangedListener(new TextWatcher() {

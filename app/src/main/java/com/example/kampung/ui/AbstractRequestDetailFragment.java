@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,7 +14,6 @@ import com.example.kampung.R;
 import com.example.kampung.controllers.UserViewModel;
 import com.example.kampung.databinding.FragmentRequestDetailBinding;
 import com.example.kampung.models.Request;
-import com.example.kampung.models.User;
 
 
 public abstract class AbstractRequestDetailFragment extends Fragment {

@@ -1,5 +1,6 @@
 package com.example.kampung.models;
 
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties // ignore class fields not mapped to properties
@@ -24,6 +25,7 @@ public class User {
         this.number = number;
     }
 
+    @Exclude // excludes field from database
     @Override
     public String toString() {
         return "User{" +

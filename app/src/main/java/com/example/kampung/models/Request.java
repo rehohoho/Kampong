@@ -57,6 +57,7 @@ public class Request implements Parcelable {
         isDelivered = tmpIsDelivered == 0 ? null : tmpIsDelivered == 1;
     }
 
+    @Exclude // excludes field from database
     public static final Creator<Request> CREATOR = new Creator<Request>() {
         @Override
         public Request createFromParcel(Parcel in) {
@@ -69,7 +70,7 @@ public class Request implements Parcelable {
         }
     };
 
-    @Exclude // excludes field from database
+    @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("user", user);
@@ -82,6 +83,7 @@ public class Request implements Parcelable {
         return result;
     }
 
+    @Exclude
     @Override
     public String toString() {
         return "Request{" +
@@ -95,11 +97,13 @@ public class Request implements Parcelable {
                 '}';
     }
 
+    @Exclude
     @Override
     public int describeContents() {
         return 0;
     }
 
+    @Exclude
     @Override
     public void writeToParcel(Parcel parcel, int i) {
 
@@ -120,6 +124,7 @@ public class Request implements Parcelable {
         parcel.writeByte((byte) (isDelivered == null ? 0 : isDelivered ? 1 : 2));
     }
 
+    @Exclude
     public String getTimeInString(){
         long currentTime = System.currentTimeMillis();
         int pastSeconds = (int) (currentTime-time)/1000;

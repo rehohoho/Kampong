@@ -53,7 +53,6 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
 
     @Override
     public void onBindViewHolder(@NonNull RequestViewHolder holder, int position) {
-        Log.d(TAG, "onBindViewHolder");
         Request req = requests.get(position);
         holder.locationTV.setText(req.order.location);
         holder.vendorTV.setText(req.order.vendor);
