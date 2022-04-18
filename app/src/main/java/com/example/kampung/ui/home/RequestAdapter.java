@@ -21,14 +21,14 @@ import com.example.kampung.models.Request;
 import java.util.ArrayList;
 
 
-public class HomeRequestAdapter extends RecyclerView.Adapter<HomeRequestAdapter.RequestViewHolder> {
+public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestViewHolder> {
 
     private final String TAG = "HomeRequestAdapter";
     private final LayoutInflater mInflater;
     private ArrayList<Request> requests;
     private int resId;
 
-    public HomeRequestAdapter(Context context, ArrayList<Request> requests, int resId) {
+    public RequestAdapter(Context context, ArrayList<Request> requests, int resId) {
         mInflater = LayoutInflater.from(context);
         this.requests = requests;
         this.resId = resId;
@@ -47,7 +47,7 @@ public class HomeRequestAdapter extends RecyclerView.Adapter<HomeRequestAdapter.
 
     @Override
     public RequestViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View itemView = mInflater.inflate(R.layout.fragment_home_request_cardview, viewGroup, false);
+        View itemView = mInflater.inflate(R.layout.cardview_request, viewGroup, false);
         return new RequestViewHolder(itemView);
     }
 

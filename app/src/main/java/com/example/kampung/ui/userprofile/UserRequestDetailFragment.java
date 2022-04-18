@@ -1,4 +1,4 @@
-package com.example.kampung.ui;
+package com.example.kampung.ui.userprofile;
 
 import androidx.navigation.Navigation;
 
@@ -11,11 +11,12 @@ import android.widget.Toast;
 
 import com.example.kampung.R;
 import com.example.kampung.controllers.DAO;
+import com.example.kampung.ui.AbstractRequestDetailFragment;
 
 
-public class RequestDetailFragment extends AbstractRequestDetailFragment {
+public class UserRequestDetailFragment extends AbstractRequestDetailFragment {
 
-    public RequestDetailFragment() {
+    public UserRequestDetailFragment() {
         // Required empty public constructor
     }
 

@@ -12,23 +12,12 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_home_req_details_Fragment"
-            app:destination="@id/home_req_details" />
+            app:destination="@id/home_req_detail_fragment" />
 
         <action
             android:id="@+id/action_navigation_home_to_search_fragment"
             app:destination="@id/search_fragment" />
 
-    </fragment>
-
-    <fragment
-        android:id="@+id/home_req_details"
-        android:name="com.example.kampung.ui.home.HomeRequestDetails"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home_request_details">
-
-        <action
-            android:id="@+id/action_home_req_details_to_home"
-            app:destination="@id/navigation_home" />
     </fragment>
 
     <activity
@@ -58,12 +47,12 @@
         tools:layout="@layout/fragment_user_profile" >
         <action
             android:id="@+id/action_navigation_user_profile_to_requestDetailFragment"
-            app:destination="@id/req_details_fragment" />
+            app:destination="@id/user_req_detail_fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/req_details_fragment"
-        android:name="com.example.kampung.ui.RequestDetailFragment"
+        android:id="@+id/user_req_detail_fragment"
+        android:name="com.example.kampung.ui.userprofile.UserRequestDetailFragment"
         android:label="fragment_request_detail"
         tools:layout="@layout/fragment_request_detail" >
         <argument
@@ -72,6 +61,17 @@
         <action
             android:id="@+id/action_navigation_req_detail_to_user_profile"
             app:destination="@id/navigation_user_profile" />
-
     </fragment>
+
+    <fragment
+        android:id="@+id/home_req_detail_fragment"
+        android:name="com.example.kampung.ui.home.HomeRequestDetailFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_request_detail">
+
+        <action
+            android:id="@+id/action_home_req_details_to_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
 </navigation>

@@ -21,9 +21,9 @@ import com.example.kampung.ui.AbstractRequestDetailFragment;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeRequestDetails extends AbstractRequestDetailFragment {
+public class HomeRequestDetailFragment extends AbstractRequestDetailFragment {
 
-    public HomeRequestDetails() {
+    public HomeRequestDetailFragment() {
         // Required empty public constructor
     }
 

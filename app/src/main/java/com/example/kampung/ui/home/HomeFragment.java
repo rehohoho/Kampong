@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         String searchString = SearchActivity.query;
 
-        HomeRequestAdapter requestAdapter = new HomeRequestAdapter(getContext(), requestList, R.id.action_navigation_home_to_home_req_details_Fragment);
+        RequestAdapter requestAdapter = new RequestAdapter(getContext(), requestList, R.id.action_navigation_home_to_home_req_details_Fragment);
         binding.recyclerBrowsereq.setAdapter(requestAdapter);
         binding.recyclerBrowsereq.setLayoutManager(new LinearLayoutManager(getContext()));
         requestsViewModel = new ViewModelProvider(this).get(RequestsViewModel.class);
