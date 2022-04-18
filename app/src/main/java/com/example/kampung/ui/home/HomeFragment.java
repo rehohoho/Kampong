@@ -20,6 +20,7 @@ import com.example.kampung.controllers.RequestsViewModel;
 import com.example.kampung.databinding.FragmentHomeBinding;
 import com.example.kampung.models.Request;
 import com.example.kampung.models.RequestAction;
+import com.example.kampung.ui.RequestAdapter;
 import com.example.kampung.ui.search.SearchActivity;
 
 import java.util.ArrayList;

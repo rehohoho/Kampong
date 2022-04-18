@@ -22,7 +22,7 @@ import com.example.kampung.R;
 import com.example.kampung.controllers.DAO;
 import com.example.kampung.controllers.RequestsViewModel;
 import com.example.kampung.models.Request;
-import com.example.kampung.ui.home.RequestAdapter;
+import com.example.kampung.ui.RequestAdapter;
 
 import java.util.ArrayList;
 
