@@ -58,11 +58,11 @@
         tools:layout="@layout/fragment_user_profile" >
         <action
             android:id="@+id/action_navigation_user_profile_to_requestDetailFragment"
-            app:destination="@id/requestDetailFragment" />
+            app:destination="@id/req_details_fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/requestDetailFragment"
+        android:id="@+id/req_details_fragment"
         android:name="com.example.kampung.ui.RequestDetailFragment"
         android:label="fragment_request_detail"
         tools:layout="@layout/fragment_request_detail" >
@@ -70,7 +70,8 @@
             android:name="requestKey"
             app:argType="string" />
         <action
-            android:id="@+id/action_requestDetailFragment_to_navigation_user_profile"
+            android:id="@+id/action_navigation_req_detail_to_user_profile"
             app:destination="@id/navigation_user_profile" />
+
     </fragment>
 </navigation>
