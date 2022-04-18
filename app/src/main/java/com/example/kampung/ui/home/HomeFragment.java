@@ -5,8 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +18,7 @@ import com.example.kampung.R;
 import com.example.kampung.controllers.DAO;
 import com.example.kampung.controllers.RequestsViewModel;
 import com.example.kampung.databinding.FragmentHomeBinding;
+import com.example.kampung.models.Request;
 import com.example.kampung.models.RequestAction;
 import com.example.kampung.ui.search.SearchActivity;
 
@@ -29,7 +28,7 @@ public class HomeFragment extends Fragment {
 
     private final String TAG = "HomeFragment";
     private RequestsViewModel requestsViewModel;
-    private ArrayList<RequestAction> requestList = new ArrayList<>();
+    private ArrayList<Request> requestList = new ArrayList<>();
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -60,9 +59,9 @@ public class HomeFragment extends Fragment {
         if (searchString.length() > 0) {
             Log.d(TAG, "View Created " + searchString + " queries");
             binding.textRequest.setText("Filtered Result");
-            requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), request -> {
-                if (request.getRequest().order.location.equals(searchString) && !request.getRequest().isAccepted && request.getActionId() == RequestAction.ACTION_ID.ADDED) {
-                    requestList.add(request);
+            requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), requestAction -> {
+                if (requestAction.getRequest().order.location.equals(searchString) && !requestAction.getRequest().isAccepted && requestAction.getActionId() == RequestAction.ACTION_ID.ADDED) {
+                    requestList.add(requestAction.getRequest());
                     requestAdapter.notifyItemInserted(requestList.size() - 1);
                 }
                 // DISPLAY MESSAGE FOR SUCCESSFUL / UNSUCCESSFUL SEARCHES
@@ -81,9 +80,9 @@ public class HomeFragment extends Fragment {
         }
         else {
             Log.d(TAG, "No Search");
-            requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), request -> {
-                if(!request.getRequest().isAccepted && request.getActionId() == RequestAction.ACTION_ID.ADDED){
-                    requestList.add(request);
+            requestsViewModel.getRequests(DAO.getInstance()).observe(getViewLifecycleOwner(), requestAction -> {
+                if(!requestAction.getRequest().isAccepted && requestAction.getActionId() == RequestAction.ACTION_ID.ADDED && !requestList.contains(requestAction.getRequest())){
+                    requestList.add(requestAction.getRequest());
                     requestAdapter.notifyItemInserted(requestList.size() - 1);
                 }
 

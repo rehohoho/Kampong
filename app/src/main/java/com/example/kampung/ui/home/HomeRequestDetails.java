@@ -107,7 +107,7 @@ public class HomeRequestDetails extends Fragment {
                 User curruser = userViewModel.getUser().getValue();
                 if(!curruser.telegramHandle.equals(req.user.telegramHandle)){
                     Toast.makeText(getContext(),"Request accepted",Toast.LENGTH_SHORT).show();
-                    req.isAccepted=true;
+                    req.isAccepted = true;
                     req.acceptedBy = curruser;
                     DAO dao = DAO.getInstance();
                     dao.update(req, req.uniqueID);

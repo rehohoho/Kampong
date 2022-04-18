@@ -17,18 +17,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kampung.R;
 import com.example.kampung.models.Request;
-import com.example.kampung.models.RequestAction;
 
 import java.util.ArrayList;
 
 
 public class HomeRequestAdapter extends RecyclerView.Adapter<HomeRequestAdapter.RequestViewHolder> {
 
-    private final String TAG = "RequestAdapter";
+    private final String TAG = "HomeRequestAdapter";
     private final LayoutInflater mInflater;
-    private ArrayList<RequestAction> requests;
+    private ArrayList<Request> requests;
 
-    public HomeRequestAdapter(Context context, ArrayList<RequestAction> requests) {
+    public HomeRequestAdapter(Context context, ArrayList<Request> requests) {
         mInflater = LayoutInflater.from(context);
         this.requests = requests;
     }
@@ -53,7 +52,7 @@ public class HomeRequestAdapter extends RecyclerView.Adapter<HomeRequestAdapter.
     @Override
     public void onBindViewHolder(@NonNull RequestViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder");
-        Request req = requests.get(position).getRequest();
+        Request req = requests.get(position);
         holder.locationTV.setText(req.order.location);
         holder.vendorTV.setText(req.order.vendor);
         holder.timeTV.setText(req.getTimeInString()); // how to display the time properly from firebase
