@@ -16,7 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.kampung.BottomNavActivity;
+import com.example.kampung.MainActivity;
 import com.example.kampung.R;
 import com.example.kampung.models.Request;
 import com.example.kampung.utility.NetworkChangeListener;
@@ -84,7 +84,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 query = locations.get(position);
                 Log.d(TAG, query);
-                Intent myIntent = new Intent(SearchActivity.this, BottomNavActivity.class);
+                Intent myIntent = new Intent(SearchActivity.this, MainActivity.class);
                 SearchActivity.this.startActivity(myIntent);
             }
         });

@@ -41,7 +41,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity_bottom_nav);
+                NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity);
                 navController.navigate(R.id.action_navigation_home_to_search_fragment);
             }
         });

@@ -83,7 +83,7 @@ public class UserProfileFragment extends Fragment {
 
     private void setUserProfile(View view){
         mSharedPreferences = getContext().getSharedPreferences("com.example.kampung", Context.MODE_PRIVATE);
-        userTeleHandle = mSharedPreferences.getString(getString(R.string.userTeleHandle)," ");
+        userTeleHandle = mSharedPreferences.getString(getString(R.string.package_name)," ");
         userName = mSharedPreferences.getString(getString(R.string.username),  " ");
 
         mUserTeleHandleTextView = view.findViewById(R.id.telegram_handle);

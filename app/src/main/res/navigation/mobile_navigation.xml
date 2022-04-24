@@ -31,12 +31,12 @@
     </activity>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_create_request"
         android:name="com.example.kampung.ui.createrequest.CreateRequestFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_create_request"
         tools:layout="@layout/fragment_create_req" >
         <action
-            android:id="@+id/action_navigation_dashboard_to_navigation_home"
+            android:id="@+id/action_navigation_create_request_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
 

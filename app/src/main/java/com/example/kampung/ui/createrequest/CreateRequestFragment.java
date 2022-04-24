@@ -97,8 +97,8 @@ public class CreateRequestFragment extends Fragment {
 
                 Toast.makeText(getContext(),"Request created!", Toast.LENGTH_SHORT).show();
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity_bottom_nav);
-                navController.navigate(R.id.action_navigation_dashboard_to_navigation_home);
+                NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity);
+                navController.navigate(R.id.action_navigation_create_request_to_navigation_home);
                 DAO.getInstance().add(request);
             }
         });

@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.kampung.controllers.DAO;
 import com.example.kampung.controllers.UserViewModel;
@@ -49,7 +48,7 @@ public class LogInActivity extends AppCompatActivity {
                 reqkey = DAO.getInstance().add(currUser);
             }
             userViewModel.getUser(DAO.getInstance(), reqkey);
-            Intent intent = new Intent(LogInActivity.this, BottomNavActivity.class);
+            Intent intent = new Intent(LogInActivity.this, MainActivity.class);
             startActivity(intent);
         }
 
@@ -68,7 +67,7 @@ public class LogInActivity extends AppCompatActivity {
         mUsername=(EditText) findViewById(R.id.enter_username);
         btnLogin = (ImageButton) findViewById(R.id.login);
         mCheckBox = (CheckBox) findViewById(R.id.checkbox);
-        mPreferences = getSharedPreferences(getString(R.string.pref_name), Context.MODE_PRIVATE);
+        mPreferences = getSharedPreferences(getString(R.string.package_name), Context.MODE_PRIVATE);
         mEditor = mPreferences.edit();
 
         checkSharePreferences();
@@ -85,14 +84,14 @@ public class LogInActivity extends AppCompatActivity {
 
                 if (mCheckBox.isChecked()){
                     // set a checkbox when the application starts
-                    mEditor.putString(getString(R.string.checkbox), "True");
-                    mEditor.putString(getString(R.string.userTeleHandle), teleHandle);
+                    mEditor.putString(getString(R.string.package_name), "True");
+                    mEditor.putString(getString(R.string.package_name), teleHandle);
                     mEditor.putString(getString(R.string.username), userName);
                     mEditor.commit();
                 } else {
                     // set a checkbox when the application starts
-                    mEditor.putString(getString(R.string.checkbox), "False");
-                    mEditor.putString(getString(R.string.userTeleHandle), "");
+                    mEditor.putString(getString(R.string.package_name), "False");
+                    mEditor.putString(getString(R.string.package_name), "");
                     mEditor.putString(getString(R.string.username), "");
                     mEditor.commit();
                 }
@@ -104,8 +103,8 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private void checkSharePreferences() {
-        String checkbox = mPreferences.getString(getString(R.string.checkbox), "False");
-        String userTeleHandle = mPreferences.getString(getString(R.string.userTeleHandle), "");
+        String checkbox = mPreferences.getString(getString(R.string.package_name), "False");
+        String userTeleHandle = mPreferences.getString(getString(R.string.package_name), "");
         String username = mPreferences.getString(getString(R.string.username),"");
 
         mTeleHandle.setText(userTeleHandle);

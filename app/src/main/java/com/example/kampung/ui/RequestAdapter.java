@@ -61,7 +61,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
             @Override
             public void onClick(View view) {
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity_bottom_nav);
+                NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment_activity);
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("request", req);
                 navController.navigate(resId, bundle);
