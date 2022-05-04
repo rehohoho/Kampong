@@ -3,7 +3,6 @@
 App that allows users to request for takeaway food or offer to takeaway food. The features include the following:
 
 <div align="center">
-<img src="images/ss_landingPage.png" width="200" height="400">
 <img src="images/ss_orderDetails1.png" width="200" height="400">
 <img src="images/ss_requests.png" width="200" height="400">
 <img src="images/ss_search.png" width="200" height="400">
